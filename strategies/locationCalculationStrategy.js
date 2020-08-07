@@ -6,17 +6,17 @@ class LocationCalculationStrategy{
         this.location = {}
         this.xCoordinateDynamic = false
         this.yCoordinateDynamic = false
-        if(typeof inputLocation.x === 'string' && inputLocation.x[inputLocation.x.length - 1] === "%"){
+        if(typeof this.inputLocation.x === 'string' && this.inputLocation.x[this.inputLocation.x.length - 1] === "%"){
             this.xCoordinateDynamic = true
-            this.location.x = parseInt(inputLocation.x.substring(0, inputLocation.x.length - 1)) / 100
+            this.location.x = parseInt(this.inputLocation.x.substring(0, this.inputLocation.x.length - 1)) / 100
         }else{
-            this.location.x = inputLocation.x
+            this.location.x = this.inputLocation.x
         }
-        if(typeof inputLocation.y === 'string' && inputLocation.y[inputLocation.y.length - 1] === "%"){
+        if(typeof this.inputLocation.y === 'string' && this.inputLocation.y[this.inputLocation.y.length - 1] === "%"){
             this.yCoordinateDynamic = true
-            this.location.y = parseInt(inputLocation.y.substring(0, inputLocation.y.length - 1)) / 100
+            this.location.y = parseInt(this.inputLocation.y.substring(0, this.inputLocation.y.length - 1)) / 100
         }else{
-            this.location.y = inputLocation.y
+            this.location.y = this.inputLocation.y
         }
     }
 

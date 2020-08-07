@@ -10,36 +10,16 @@ class CanvasText extends Graphic{
         this.fontWeight = fontWeight
         this.fontColor = fontColor
         this.textAlign = textAlign
-        this.xCoordinateDynamic = false
-        this.yCoordinateDynamic = false
-        if(typeof location.x === 'string' && location.x[location.x.length - 1] === "%"){
-            this.xCoordinateDynamic = true
-            this.location.x = parseInt(location.x.substring(0, location.x.length - 1)) / 100
-        }else{
-            this.location.x = location.x
-        }
-        if(typeof location.y === 'string' && location.y[location.y.length - 1] === "%"){
-            this.yCoordinateDynamic = true
-            this.location.y = parseInt(location.y.substring(0, location.y.length - 1)) / 100
-        }else{
-            this.location.y = location.y
-        }
+        this.locationStrategy = new LocationCalculationStrategy(location, canvas)
     }
 
-    get dynamicX(){
-        return this.canvas.width * this.location.x
-    }
-
-    get dynamicY(){
-        return this.canvas.height * this.location.y
-    }
 
     get x(){
-        return this.xCoordinateDynamic ? this.dynamicX : this.location.x
+        return this.locationStrategy.x
     }
 
     get y(){
-        return this.yCoordinateDynamic ? this.dynamicY : this.location.y 
+        return this.locationStrategy.y
     }
 
     setupCanvas(){
