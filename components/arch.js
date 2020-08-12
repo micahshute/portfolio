@@ -1,6 +1,6 @@
-class Circle extends Graphic{
+class Arch extends Graphic{
 
-    constructor(canvas, location, radius, color = "white"){
+    constructor(canvas, location, radius, color){
         super(canvas, location)
         this.radius = radius
         this.color = color
@@ -9,8 +9,8 @@ class Circle extends Graphic{
     render(dt){
         const ctx = this.canvas.getContext('2d')
         ctx.beginPath()
-        ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI)
+        ctx.arc(this.x, this.y, this.radius, Math.PI, 0)
         ctx.fillStyle = this.color
         ctx.fill()
-    } 
+    }
 }

@@ -5,7 +5,8 @@ class MoveableSprite extends Sprite{
         this.arrowsPressed = []
         // this.sprite = new Sprite('public/assets/sprites/Male/Male\ 01-2.png', null, {x: 100, y: 100}, {
         //     top: 0, bottom: this.canvas.height, left: 0, right: this.canvas.width
-        // })
+        // }) 
+
         this.sprite = this
         this.boundKeyUpEL = this.keyUpEL.bind(this)
         this.boundKeyDownEL = this.keyDownEL.bind(this)

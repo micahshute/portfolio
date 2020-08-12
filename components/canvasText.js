@@ -2,25 +2,15 @@ class CanvasText extends Graphic{
 
 
     constructor(txt, location, canvas, {font= 'UnicaOne', fontSize='30px', fontColor='black', fontWeight=900, textAlign="start"}){
-        super(canvas)
+        super(canvas, location)
         this.txt = txt
         this.font = font
         this.fontSize = fontSize
-        this.location = {}
         this.fontWeight = fontWeight
         this.fontColor = fontColor
         this.textAlign = textAlign
-        this.locationStrategy = new LocationCalculationStrategy(location, canvas)
     }
 
-
-    get x(){
-        return this.locationStrategy.x
-    }
-
-    get y(){
-        return this.locationStrategy.y
-    }
 
     setupCanvas(){
         const ctx = this.canvas.getContext('2d')

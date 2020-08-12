@@ -10,6 +10,11 @@
     font-weight: bolder;
 }
 
+@font-face{
+    font-family: "Iceland";
+    src: url('../assets/fonts/Iceland-Regular.ttf');
+}
+
 #test{
     font-family: 'UnicaOne';
 }
@@ -31,6 +36,7 @@ html{
     padding: 0px;
     margin: 0px;
 }
+
 
 .flex-row{
     display: flex;

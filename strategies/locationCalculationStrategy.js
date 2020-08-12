@@ -6,6 +6,7 @@ class LocationCalculationStrategy{
         this.location = {}
         this.xCoordinateDynamic = false
         this.yCoordinateDynamic = false
+        this.isMoving = false
         if(typeof this.inputLocation.x === 'string' && this.inputLocation.x[this.inputLocation.x.length - 1] === "%"){
             this.xCoordinateDynamic = true
             this.location.x = parseInt(this.inputLocation.x.substring(0, this.inputLocation.x.length - 1)) / 100
@@ -27,6 +28,7 @@ class LocationCalculationStrategy{
     get dynamicY(){
         return this.canvas.height * this.location.y
     }
+
 
     get x(){
         return this.xCoordinateDynamic ? this.dynamicX : this.location.x

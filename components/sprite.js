@@ -114,11 +114,10 @@ class Sprite extends Graphic{
     }
 
     constructor(sprite, user= null, location= {x: 100, y: 100 }, canvas ,size= {x: 64, y: 64}){
-        super(canvas)
+        super(canvas, location, MovingLocationCalculationStrategy)
         this.img = document.createElement('img')
         this.img.src = sprite
         this.user = user
-        this.location = location
         this.size = size
         this.animationStrategy = AnimationStrategy
         this._activeState = Sprite.Image.states.STANDING_DOWN
@@ -137,6 +136,7 @@ class Sprite extends Graphic{
     }
 
     constructAnimators(){
+        const speed = 200
         this.animators = [
             new this.animationStrategy([
                 Sprite.Image.StandDown
@@ -155,25 +155,25 @@ class Sprite extends Graphic{
                 Sprite.Image.StandDown,
                 Sprite.Image.WalkDown2,
                 Sprite.Image.StandDown
-            ], 4, {x: 0, y: 120}),
+            ], 4, {x: 0, y: speed}),
             new this.animationStrategy([
                 Sprite.Image.WalkRight1,
                 Sprite.Image.StandRight,
                 Sprite.Image.WalkRight2,
                 Sprite.Image.StandRight
-            ], 4, {x: 120, y: 0}),
+            ], 4, {x: speed, y: 0}),
             new this.animationStrategy([
                 Sprite.Image.WalkLeft1,
                 Sprite.Image.StandLeft,
                 Sprite.Image.WalkLeft2,
                 Sprite.Image.StandLeft
-            ], 4, {x: -120, y: 0}),
+            ], 4, {x: -1 * speed, y: 0}),
             new this.animationStrategy([
                 Sprite.Image.WalkUp1,
                 Sprite.Image.StandUp,
                 Sprite.Image.WalkUp2,
                 Sprite.Image.StandUp
-            ], 4, {x: 0, y: -120})
+            ], 4, {x: 0, y: -1 * speed})
         ]
     }
 
@@ -205,10 +205,10 @@ class Sprite extends Graphic{
     }
 
     constrainLocation(){
-        if(this.location.x > this.locationBoundaries.right - this.size.x){ this.location.x = this.locationBoundaries.right - this.size.x }
-        if(this.location.x < 0){ this.location.x = 0}
-        if(this.location.y > this.locationBoundaries.bottom - this.size.y){ this.location.y = this.locationBoundaries.bottom - this.size.y }
-        if(this.location.y < 0){ this.location.y = 0}
+        if(this.x > this.locationBoundaries.right - this.size.x){ this.x = this.locationBoundaries.right - this.size.x }
+        if(this.x < 0){ this.x = 0}
+        if(this.y > this.locationBoundaries.bottom - this.size.y){ this.y = this.locationBoundaries.bottom - this.size.y }
+        if(this.y < 0){ this.y = 0}
     }
 
     render(dt){

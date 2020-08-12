@@ -16,10 +16,9 @@ class CanvasTextManager extends Picture{
         textAlign = "center",
         calculateImmediately = false
         }){
-        super()
+        super(canvas, location)
         this.canvas = canvas
         this.txt = txt 
-        this.locationStrategy = new LocationCalculationStrategy(location, canvas)
         this.endingX = endingX 
         this.shouldScroll = shouldScroll 
         this.shouldDisappearSecondsAfterScroll = shouldDisappearSecondsAfterScroll
@@ -33,7 +32,7 @@ class CanvasTextManager extends Picture{
         this.fontColor = fontColor 
         this.fontWeight = fontWeight
         this.chrSize = Number.parseInt(this.fontSize.substring(0, this.fontSize.length - 2))
-
+        this.textAlign = textAlign
         
         this.elapsedTime = 0
         this.childrenQueue = []
@@ -58,14 +57,6 @@ class CanvasTextManager extends Picture{
         return percentFromRight * this.totalWidth / 100
     }
 
-
-    get x(){
-        return this.locationStrategy.x
-    }
-
-    get y(){
-        return this.locationStrategy.y
-    }
 
     get txtRows(){
         const words = this.txt.split(' ')
@@ -118,7 +109,8 @@ class CanvasTextManager extends Picture{
                 font: this.font, 
                 fontSize: this.fontSize, 
                 fontColor: this.fontColor, 
-                fontWeight: this.fontWeight
+                fontWeight: this.fontWeight,
+                textAlign: this.textAlign
             })
         )
 
