@@ -39,6 +39,8 @@ class CanvasApp extends Picture{
         this.add(new WithDelay(new Collidable(new Door(this.canvas, {x: "80%", y: "20%"}, doorHeight, doorWidth, {label: "Bio"}),
         () => {
             this.children = []
+            this.add(new BioPage(this.canvas))
+            this.add(this.sprite)
         }
         ), 3))
         this.add(new WithDelay(new Collidable(new Door(this.canvas, {x: "80%", y: "50%"}, doorHeight, doorWidth, {label: "Projects"}),
