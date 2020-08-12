@@ -90,6 +90,14 @@ class CanvasTextManager extends Picture{
                 rowWordStart = rowWordEnd
                 rowPixelCount = wordLen
             }
+            if(words[i].includes("\n")){
+                rows.push(currentRow.join(' '))
+                currentRow = []
+                rowWordEnd += 1
+                rowWordStart = rowWordEnd
+                rowPixelCount = 0
+                rows.push([])
+            }
         }
         rows.push(currentRow.join(' '))
         return rows
