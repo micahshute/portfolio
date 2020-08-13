@@ -30,6 +30,10 @@ class TextDecorator{
         this.textComponent.setupCanvas()
     }
 
+    get collidables(){
+        return this.textComponent.collidables
+    }
+
     render(dt){
         this.update(dt)
         console.log(this.textComponent)

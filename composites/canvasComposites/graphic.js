@@ -35,6 +35,10 @@ class Graphic extends Component{
         return this.locationStrategy.inputLocation
     }
 
+    get collidables(){
+        return []
+    }
+
     update(dt){
 
     }

@@ -6,7 +6,7 @@ const introSequenceTxt = [
     "Anyway, control the avatar using W,S,A,D or the arrow keys to explore. You can also go to a generic version of this site by visiting the bottom left door. Thanks for visiting \u{1F531}"
 ]
 
-const bio = `I graduated from the United States Naval Academy in 2012 and served as a Submarine Office for 5 years. During that time, I ran a nuclear power plant, became qualified as Engineer of an S8G nuclear reacotr, and drove the ship as the Officer of the Deck.
+const bio = `I graduated from the United States Naval Academy in 2012 with a B.S. in Control Systems Engineering and served as a Submarine Officer for 5 years. During that time, I ran a nuclear power plant, became qualified as Engineer of an S8G nuclear reacotr, and drove the ship as the Officer of the Deck.
 
  I resigned my comission in 2017 to pursue software engineering. Since then, I have completed a M.S. in Computer and Electrical Engineering from the University of Delaware, and completed a full stack web development program through Flatiron School, where I taught as an instructor for that program while I finished my MS.
 

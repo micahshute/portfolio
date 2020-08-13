@@ -29,6 +29,10 @@ class Collidable{
         return this.component.yMax
     }
 
+    get collidables(){
+        return [this]
+    }
+
     update(dt){
         return this.component.update(dt)
     }

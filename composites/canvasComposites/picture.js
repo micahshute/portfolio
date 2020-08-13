@@ -41,5 +41,8 @@ class Picture extends ComplexComponent{
         return this.locationStrategy.inputLocation
     }
 
+    get collidables(){
+        return this.children.map(c => c.collidables).flat(Number.POSITIVE_INFINITY)
+    }
 
 }
