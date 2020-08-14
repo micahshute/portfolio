@@ -1,10 +1,5 @@
 
 @font-face {
-    font-family: 'WarFont';
-    src: url('../assets/fonts/war_font.ttf');
-}
-
-@font-face {
     font-family: 'UnicaOne';
     src: url('../assets/fonts/UnicaOne-Regular.ttf') format('truetype');
     font-weight: bolder;
@@ -13,6 +8,16 @@
 @font-face{
     font-family: "Iceland";
     src: url('../assets/fonts/Iceland-Regular.ttf');
+}
+
+@font-face{
+    font-family: "Raj";
+    src: url('../assets/fonts/Rajdhani-Regular.ttf');
+}
+
+@font-face{
+    font-family: "Cinzel";
+    src: url('../assets/fonts/Cinzel-Regular.ttf');
 }
 
 #test{
@@ -69,6 +74,6 @@ html{
 }
 
 canvas{
-    background-color: rgb(6, 0, 22);
+    background-color: rgb(0, 6, 39);
     border: 1px solid black;
 }

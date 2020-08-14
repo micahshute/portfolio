@@ -5,33 +5,34 @@ class BioPage extends Picture{
         this.add(new Image(
             "public/assets/images/profile.png",
             canvas,
-            {x: 10, y: 150},
+            {x: 10, y: "25%"},
             {x: 220, y: 350}
         ))
         this.add(new CanvasTextManager(
             bio, 
             canvas, 
-            { x: 250, y: 150},
+            { x: 250, y: "25%"},
             {
                 textAlign: 'start',
-                font: 'Iceland',
+                font: 'Raj',
                 fontSize: "20px", 
-                fontWeight: 300
+                fontWeight: 300,
+                fontColor: "#CCCCCC"
             }
         ))
         this.addDoor()
     }
 
     addDoor(){
-        const doorHeight = 0.1 * this.canvas.height
-        const doorWidth = "15%"
-        this.add(new Collidable(new Door(this.canvas, {x: "9%", y: 75}, doorHeight, doorWidth, {label: "Back"}),
+        const doorHeight = "20%"
+        const doorWidth = 0.15 * this.canvas.height
+        this.add(new Collidable(new Door(this.canvas, {x: 10, y: 10}, doorWidth, doorHeight, {label: "Back"}),
         () => {
             const canvasApp = this.parent
             this.parent.remove(this)
             canvasApp.sprite.location = {
-                x: this.canvas.width * (0.8 - 0.075) - canvasApp.sprite.size.x,
-                y: this.canvas.height * 0.2
+                x: this.canvas.width * (0.8) - canvasApp.sprite.size.x - 5,
+                y: this.canvas.height * 0.1 + (0.2 * this.canvas.height - canvasApp.sprite.size.y)
             }
             canvasApp.setEnvironment(false)
         }

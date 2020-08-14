@@ -12,7 +12,6 @@ class CanvasApp extends Picture{
         const initSequence = this.getInitSequence()
         this.add(new WithDelay(initSequence,1))
         this.sprite = new MoveableSprite('public/assets/sprites/Male/Male\ 01-2.png', null, {x: "15%", y: 100}, this.canvas)
-        
         this.setEnvironment(true, true)
         window.onresize = this.canvasSetup.bind(this)
         this.defineBindingsAndEventListeners()
@@ -49,36 +48,44 @@ class CanvasApp extends Picture{
     }
 
     addDoors(withDelay = true){
-        const doorHeight = 0.1 * this.canvas.height
-        const doorWidth = "15%"
+        const doorHeight = "20%"
+        const doorWidth = 0.15 * this.canvas.height
         const doors = [
-            new Collidable(new Door(this.canvas, {x: "80%", y: "20%"}, doorHeight, doorWidth, {label: "Bio"}),
+            new Collidable(new Door(this.canvas, {x: "80%", y: "10%"}, doorWidth, doorHeight, {label: "Biography"}),
                 () => {
                     this.children = []
                     const bioPage = new BioPage(this.canvas)
                     this.add(bioPage)
                     this.sprite.location = {
-                        x: this.canvas.width * (0.09 + 0.075),
-                        y: 75
+                        x: 10 + doorWidth + 5,
+                        y: 10 + (0.2 * this.canvas.height - this.sprite.size.y )
                     }
                     this.add(this.sprite)
                 }),
-            new Collidable(new Door(this.canvas, {x: "80%", y: "50%"}, doorHeight, doorWidth, {label: "Projects"}),
+
+            new Collidable(new Door(this.canvas, {x: "80%", y: "40%"}, doorWidth, doorHeight, {label: "Projects"}),
+                () => {
+                    this.children = []
+                    const projectsPage = new ProjectsPage(this.canvas)
+                    this.add(projectsPage)
+                    this.sprite.location = {
+                        x: 10 + doorWidth + 5,
+                        y: 10 + (0.2 * this.canvas.height - this.sprite.size.y )
+                    }
+                    this.add(this.sprite)
+                }),
+            new Collidable(new Door(this.canvas, {x: "80%", y: "70%"}, doorWidth, doorHeight, {label: "Contact"}),
                 () => {
                     this.children = []
                 }),
-            new Collidable(new Door(this.canvas, {x: "80%", y: "85%"}, doorHeight, doorWidth, {label: "Contact Me"}),
-                () => {
-                    this.children = []
-                }),
-            new Collidable(new Door(this.canvas, {x: "9%", y: "90%"}, doorHeight, doorWidth, {label: "Standard Site"}),
+            new Collidable(new Door(this.canvas, {x: "9%", y: "70%"}, doorWidth, doorHeight, {label: "Site Portal"}),
                 () => {
                     this.children = []
                 })
         ]
 
         if(withDelay){
-            const delayedDoors = doors.map(d => new WithDelay(d, 3))
+            const delayedDoors = doors.map(d => new WithDelay(new WithTransition(d), 3))
             for(let dd of delayedDoors){
                 this.add(dd)
             }
@@ -101,9 +108,10 @@ class CanvasApp extends Picture{
                     scrollRate: 30,
                     font: 'Iceland',
                     fontSize: "20px",
-                    fontColor: "#999999",
+                    fontColor: "#CCCCCC",
                     endingX: "30%",
-                    textAlign: "start"
+                    textAlign: "start",
+                    fontWeight: 300
                 }
         ))
         

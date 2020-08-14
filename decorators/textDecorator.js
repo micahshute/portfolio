@@ -36,7 +36,6 @@ class TextDecorator{
 
     render(dt){
         this.update(dt)
-        console.log(this.textComponent)
         this.textComponent.render(dt)
     }
 

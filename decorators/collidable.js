@@ -5,12 +5,20 @@ class Collidable{
         this.collideHook = collideHook
     }
 
+    get canvas(){
+        return this.component.canvas
+    }
+
     get x(){
         return this.component.x
     }
 
     get y(){
         return this.component.y
+    }
+
+    get location(){
+        return {x: this.x, y: this.y}
     }
 
     get xMin(){
