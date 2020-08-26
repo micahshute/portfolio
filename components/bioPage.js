@@ -21,7 +21,18 @@ class BioPage extends Picture{
             }
         ))
         this.addDoor()
+        this.add(new CanvasLink(
+            {
+                x: "50%",
+                y: "10%"
+            }, 
+            "View my resume",
+            "../public/assets/resume.pdf",
+            () => this.parent.sprite,
+            {}
+        ))
     }
+
 
     addDoor(){
         const doorHeight = "20%"

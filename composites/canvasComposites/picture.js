@@ -12,7 +12,14 @@ class Picture extends ComplexComponent{
         }
     }
 
-    set x(nx){
+    removeAllChildren(){
+        for(let child of this.children){
+            child.parent = null;
+        }
+        this.children = []
+    }
+
+    set x(nx){z
         this.locationStrategy.x = nx
     }
 

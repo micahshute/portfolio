@@ -1,4 +1,14 @@
 class Door extends Picture{
+
+    static doorHeight(){ return "20%"}
+    static doorHeightPx(){
+        const canvas = document.querySelector('canvas')
+        return canvas.height * 0.2
+    }
+
+    static doorWidth(){ return 0.15 * document.querySelector('canvas').height }
+
+
     constructor(canvas, location, width, height, {label= "", doorColor="#6e2c00", knobColor="gold", labelColor="black", labelSize=null, font="Cinzel"}){
         super(canvas, location)
         this.width = width
@@ -36,6 +46,12 @@ class Door extends Picture{
         if(label.length > 0){
             const alottedWidth = 0.65 * width
             const {size, txtWidth, txtHeight} = labelSize ? this.getSize(label, labelSize, font) : this.determineLabelSize(label, alottedWidth, font)
+            console.log(size)
+            console.log(this.canvas.width)
+            console.log(label)
+            console.log(font)
+            console.log(width)
+            console.log('----')
             const labelStart = {
                 x: rectUpperLeft.x + 0.5 * width,
                 y: rectUpperLeft.y + 0.15 * height + txtHeight / 2
@@ -66,6 +82,18 @@ class Door extends Picture{
             ctx.font = `${fontSize}px ${font}`
             textLength = ctx.measureText(label).width 
             width = textLength
+            console.log("****")
+            console.log(label)
+            console.log(textLength)
+            console.log(alottedWidth)
+            console.log(fontSize)
+            console.log(ctx.font)
+            console.log(ctx.measureText(label).width )
+            console.log(this.canvas.width)
+            console.log("****")
+        }
+        if(fontSize > 25){
+            fontSize -= 2
         }
         return {size: fontSize, txtWidth: width, txtHeight: fontSize}
     }

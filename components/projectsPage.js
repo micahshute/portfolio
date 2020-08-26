@@ -3,7 +3,24 @@ class ProjectsPage extends Picture{
     constructor(canvas, location={x: 0, y: 0}){
         super(canvas, location)
         this.addDoors()
+        this.displayTitle()
     }
+
+    displayTitle(){
+        this.add(new CanvasText(
+            "Projects",
+            {x: "50%", y: 50},
+            this.canvas,
+            {
+                font: 'UnicaOne',
+                fontSize: '30px',
+                fontColor: '#999999',
+                textAlign: "center"
+            }
+        ))
+
+    }
+
 
 
     addDoors(){
@@ -37,7 +54,9 @@ class ProjectsPage extends Picture{
                     label: "Rbimg"
                 }
             ), () => {
-
+                this.parent.add(new RbimgProject())
+                this.parent.remove(this)
+                Transporter.transportSprite("1%", "1%", "center", "below")
             }),
 
             new Collidable(new Door(
@@ -49,7 +68,9 @@ class ProjectsPage extends Picture{
                     label: "Gravity"
                 }
             ), () => {
-
+                this.parent.add(new GravityProject())
+                this.parent.remove(this)
+                Transporter.transportSprite("1%", "1%", "center", "below")
             }),
 
             new Collidable(new Door(
@@ -61,7 +82,9 @@ class ProjectsPage extends Picture{
                     label: "OdinsEye"
                 }
             ), () => {
-
+                this.parent.add(new OdinsEyeProject())
+                this.parent.remove(this)
+                Transporter.transportSprite("1%", "1%", "center", "below")
             }),
 
             new Collidable(new Door(
@@ -72,7 +95,25 @@ class ProjectsPage extends Picture{
                 {
                     label: "digiproc"
                 }
-            ))
+            ), () => {
+                this.parent.add(new DigiprocProject())
+                this.parent.remove(this)
+                Transporter.transportSprite("1%", "1%", "center", "below")
+            }),
+
+            new Collidable(new Door(
+                this.canvas,
+                {x: "40%", y: "70%"},
+                doorWidth,
+                doorHeight,
+                {
+                    label: "Blogs"
+                }
+            ), () => {  
+                this.parent.add(new BlogProject())
+                this.parent.remove(this)
+                Transporter.transportSprite("1%", "1%", "center", "below")
+            })
 
         
         ]

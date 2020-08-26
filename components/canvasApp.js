@@ -12,9 +12,10 @@ class CanvasApp extends Picture{
         const initSequence = this.getInitSequence()
         this.add(new WithDelay(initSequence,1))
         this.sprite = new MoveableSprite('public/assets/sprites/Male/Male\ 01-2.png', null, {x: "15%", y: 100}, this.canvas)
-        this.setEnvironment(true, true)
+        Transporter.sprite = this.sprite
         window.onresize = this.canvasSetup.bind(this)
         this.defineBindingsAndEventListeners()
+        this.setEnvironment(true, true)
         this.gameLoop()
     }
 
@@ -23,9 +24,9 @@ class CanvasApp extends Picture{
     }
 
     setEnvironment(initial = true, sprite= false){
-        if(sprite){ this.addSprite() }
         this.displayTitle()
         this.addDoors(initial)
+        if(sprite){ this.addSprite() }
     }
 
     addSprite(){
@@ -48,40 +49,39 @@ class CanvasApp extends Picture{
     }
 
     addDoors(withDelay = true){
-        const doorHeight = "20%"
-        const doorWidth = 0.15 * this.canvas.height
+        const doorHeight = Door.doorHeight()
+        const doorWidth = Door.doorWidth()
         const doors = [
             new Collidable(new Door(this.canvas, {x: "80%", y: "10%"}, doorWidth, doorHeight, {label: "Biography"}),
                 () => {
-                    this.children = []
+                    this.removeAllChildren()
                     const bioPage = new BioPage(this.canvas)
                     this.add(bioPage)
-                    this.sprite.location = {
-                        x: 10 + doorWidth + 5,
-                        y: 10 + (0.2 * this.canvas.height - this.sprite.size.y )
-                    }
+                    Transporter.transportSprite(10, 10, "right", "center")
                     this.add(this.sprite)
                 }),
 
             new Collidable(new Door(this.canvas, {x: "80%", y: "40%"}, doorWidth, doorHeight, {label: "Projects"}),
                 () => {
-                    this.children = []
+                    this.removeAllChildren()
                     const projectsPage = new ProjectsPage(this.canvas)
                     this.add(projectsPage)
-                    this.sprite.location = {
-                        x: 10 + doorWidth + 5,
-                        y: 10 + (0.2 * this.canvas.height - this.sprite.size.y )
-                    }
+                    Transporter.transportSprite(10,10, "right", "center")
                     this.add(this.sprite)
                 }),
             new Collidable(new Door(this.canvas, {x: "80%", y: "70%"}, doorWidth, doorHeight, {label: "Contact"}),
                 () => {
-                    this.children = []
+                    this.removeAllChildren()
+                    this.add(new ContactPage())
+                    Transporter.transportSprite(10,10,"right", "center")
+                    this.add(this.sprite)
                 }),
-            new Collidable(new Door(this.canvas, {x: "9%", y: "70%"}, doorWidth, doorHeight, {label: "Site Portal"}),
-                () => {
-                    this.children = []
-                })
+            // new Collidable(new Door(this.canvas, {x: "9%", y: "70%"}, doorWidth, doorHeight, {label: "Site Portal"}),
+            //     () => {
+            //         this.removeAllChildren()
+
+            //         this.add(this.sprite)
+            //     })
         ]
 
         if(withDelay){
@@ -106,7 +106,7 @@ class CanvasApp extends Picture{
                 {
                     shouldScroll: true,
                     scrollRate: 30,
-                    font: 'Iceland',
+                    font: 'Raj',
                     fontSize: "20px",
                     fontColor: "#CCCCCC",
                     endingX: "30%",
@@ -141,6 +141,12 @@ class CanvasApp extends Picture{
                 const childXMax = child.xMax
                 const childYMin = child.yMin 
                 const childYMax = child.yMax
+                // console.log(child.component.constructor.name)
+                // console.log(childYMin)
+                // console.log(childYMax)
+                // console.log(childXMin)
+                // console.log(childXMax)
+                // console.log("--------")
                 if(doesOverlap(spriteXMin, spriteXMax, spriteYMin, spriteYMax, childXMin, childXMax, childYMin, childYMax)){
                     return child
                 }
