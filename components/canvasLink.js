@@ -40,8 +40,11 @@ class CanvasLink extends Picture{
                         textAlign
                     }
                 ), () => {
-                    window.open(this.linkURL, "_blank")
-                    spriteRef().location = {x: spriteRef().location.x, y: this.y + Number.parseInt(fontSize) * 2 + 5}
+                    const newLocation = {x: spriteRef().location.x, y: this.y + Number.parseInt(fontSize) * 2 + 5}
+                    Transporter.transportSprite(newLocation.x, newLocation.y)
+                    const timeInterval = 1500
+                    const transportCallback = () => window.open(this.linkURL, "_blank")
+                    spriteRef().transportWithAnimation(newLocation, timeInterval, transportCallback)
                 }
         ))
     }

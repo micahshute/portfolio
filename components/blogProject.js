@@ -5,7 +5,7 @@ class BlogProject extends ProjectPage{
             githubLink: projects.blogs.sourceCode,
             linkText: "",
             projectDescription: projects.blogs.description,
-            returnSprite: Transporter.getTransportCallback("40%", "70%")
-        })
+            returnSprite: Transporter.getTransportCallback("40%", "70%", "left", "center") 
+        }) 
     }
 }

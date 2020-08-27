@@ -32,13 +32,21 @@ class MoveableSprite extends Sprite{
         })
 
         
-
+        this.wraith = false
         this.sprite = this
         this.boundKeyUpEL = this.keyUpEL.bind(this)
         this.boundKeyDownEL = this.keyDownEL.bind(this)
         
         this.makeControllble()
         // setInterval(this.makeUncontrollable.bind(this), 10000)
+    }
+
+    makeUncollidable(){
+        this.wraith = true
+    }
+
+    makeCollidable(){
+        this.wraith = false
     }
 
 
@@ -51,7 +59,26 @@ class MoveableSprite extends Sprite{
         this.arrowsPressed = []
         document.removeEventListener('keydown', this.boundKeyDownEL)
         document.removeEventListener('keyup', this.boundKeyUpEL)
-        this._activeState = Sprite.Image.states.STANDING_DOWN
+        this.activeState = Sprite.Image.states.STANDING_DOWN
+    }
+
+    transportWithAnimation(location, interval = 1000, callback= () => null){
+        this.makeUncontrollable()
+        this.activeState = Sprite.Image.states.TWISTING
+        window.setTimeout(() => {
+            window.setTimeout(() => {
+                callback()
+                window.setTimeout(() => {
+                    this.makeCollidable()
+                    this.makeControllble() 
+                    this.activeState = Sprite.Image.states.STANDING_DOWN    
+                    this.location = location 
+                }, 100)
+                
+            }, 400)
+            this.makeUncollidable()
+            this.activeState = Sprite.Image.states.BEAM_UP
+        }, interval - 400)
     }
 
     keyDownEL(e){

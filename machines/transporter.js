@@ -3,11 +3,11 @@ class Transporter{
 
     static sprite;
 
-    static getTransportCallback(x,y, doorSideX = "l", doorSideY = "c"){
+    static getTransportCallback(x,y, doorSideX = "none", doorSideY = "none"){
         return () => this.transportSprite(x,y, doorSideX, doorSideY)
     }
 
-    static transportSprite(x,y, doorSideX = "l", doorSideY = "c"){
+    static transportSprite(x,y, doorSideX = "none", doorSideY = "none"){
         let xSpriteCorrection
         let ySpriteCorrection
         switch(doorSideX.toLowerCase()){
@@ -22,6 +22,9 @@ class Transporter{
             case "c":
             case "center":
                 xSpriteCorrection = Door.doorWidth() / 2 - this.sprite.size.x / 2
+                break
+            case "none":
+                xSpriteCorrection = 0
                 break
             default:
                 throw "Invalid door x coordinate side passed into transportSprite"
@@ -42,6 +45,9 @@ class Transporter{
             case "c":
             case "center":
                 ySpriteCorrection = Door.doorHeightPx() - this.sprite.size.y
+                break
+            case "none":
+                ySpriteCorrection = 0
                 break
             default:
                 throw "Invalid door y coordiante side passed into transportSprite"

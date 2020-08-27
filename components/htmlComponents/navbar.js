@@ -8,7 +8,7 @@ class Navbar extends HTMLManager{
 
     createView(){
         return `
-            <div class="flex-row full navbar" id="links-container">
+            <div class="flex-column full navbar" id="links-container">
                 <div id="home-link-div"></div>
                 <div id="projects-link-div"></div>
                 <div id="bio-link-div"></div>

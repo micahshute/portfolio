@@ -4,7 +4,7 @@ class GravityProject extends ProjectPage{
         super("Space", {
             githubLink: projects.space.sourceCode,
             projectDescription: projects.space.description,
-            returnSprite: Transporter.getTransportCallback("80%", "40%")
+            returnSprite: Transporter.getTransportCallback("80%", "40%", "left", "center")
         })
     }
 }

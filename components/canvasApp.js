@@ -76,12 +76,10 @@ class CanvasApp extends Picture{
                     Transporter.transportSprite(10,10,"right", "center")
                     this.add(this.sprite)
                 }),
-            // new Collidable(new Door(this.canvas, {x: "9%", y: "70%"}, doorWidth, doorHeight, {label: "Site Portal"}),
-            //     () => {
-            //         this.removeAllChildren()
-
-            //         this.add(this.sprite)
-            //     })
+            new Collidable(new Door(this.canvas, {x: "9%", y: "70%"}, doorWidth, doorHeight, {label: "Site Portal"}),
+                () => {
+                    renderHTMLSite()
+                })
         ]
 
         if(withDelay){
@@ -129,6 +127,9 @@ class CanvasApp extends Picture{
     }
 
     checkCollision(){
+        if(this.sprite.wraith){
+            return false
+        }
         const spriteXMin = this.sprite.x
         const spriteXMax = this.sprite.x + this.sprite.size.x
         const spriteYMin = this.sprite.y
@@ -141,12 +142,6 @@ class CanvasApp extends Picture{
                 const childXMax = child.xMax
                 const childYMin = child.yMin 
                 const childYMax = child.yMax
-                // console.log(child.component.constructor.name)
-                // console.log(childYMin)
-                // console.log(childYMax)
-                // console.log(childXMin)
-                // console.log(childXMax)
-                // console.log("--------")
                 if(doesOverlap(spriteXMin, spriteXMax, spriteYMin, spriteYMax, childXMin, childXMax, childYMin, childYMax)){
                     return child
                 }

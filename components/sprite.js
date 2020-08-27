@@ -106,7 +106,9 @@ class Sprite extends Graphic{
                     WALKING_DOWN: 4,
                     WALKING_RIGHT: 5,
                     WALKING_LEFT: 6,
-                    WALKING_UP: 7
+                    WALKING_UP: 7,
+                    TWISTING: 8,
+                    BEAM_UP: 9
                 }
             }
         }
@@ -173,7 +175,16 @@ class Sprite extends Graphic{
                 Sprite.Image.StandUp,
                 Sprite.Image.WalkUp2,
                 Sprite.Image.StandUp
-            ], 4, {x: 0, y: -1 * speed})
+            ], 4, {x: 0, y: -1 * speed}),
+            new this.animationStrategy([
+                Sprite.Image.StandDown,
+                Sprite.Image.StandLeft,
+                Sprite.Image.StandUp,
+                Sprite.Image.StandRight
+            ], 10, {x: 0, y: 0}),
+            new this.animationStrategy([
+                Sprite.Image.StandDown
+            ], 4, {x: 0, y: -7 * speed})
         ]
     }
 
@@ -196,12 +207,13 @@ class Sprite extends Graphic{
     update(dt){
         const { frame, locationChange } = this.activeAnimator.getNewFrameAndLocationChange(dt)
         this.imgPos = frame
-        
         this.location = {
             x: this.location.x + locationChange.x,
             y: this.location.y + locationChange.y
+        } 
+        if(!this.wraith){
+            this.constrainLocation()
         }
-        this.constrainLocation()
     }
 
     constrainLocation(){
