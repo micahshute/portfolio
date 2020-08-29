@@ -1,7 +1,7 @@
 class HTMLManager extends HTMLComponent{
 
-    constructor(ctx, viewPath, viewArgs){
-        super(ctx, viewPath, viewArgs)
+    constructor(ctx,viewArgs){
+        super(ctx, viewArgs)
     }
 
 
@@ -19,8 +19,19 @@ class HTMLManager extends HTMLComponent{
 
 
     add(component){
-        this.children.push(component)
-        component.parent = this
+        if(component instanceof Element){
+            const parent = this
+            const componentWrapper = {
+                parent,
+                render: () => {
+                    parent.view.appendChild(component)
+                }
+            }
+            this.children.push(componentWrapper)
+        }else{
+            this.children.push(component)
+            component.parent = this
+        }
     }
 
     remove(component){

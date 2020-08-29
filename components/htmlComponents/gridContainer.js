@@ -1,11 +1,14 @@
 class GridContainer extends HTMLManager{
 
-    constructor(ctx, viewArgs){
-
+    constructor(gridContainer, gridArea){
+        super(gridContainer, { gridArea, style: {gridArea}})
     }
 
     createView(){
-        return `<div style="grid-area: {{gridArea}}></div>`
+        const div = document.createElement('div')
+        div.className = "{{gridArea}}"
+        return div
     }
+
 
 }

@@ -20,15 +20,32 @@
     src: url('../assets/fonts/Cinzel-Regular.ttf');
 }
 
+@font-face{
+    font-family: 'Quest';
+    src: url('../assets/fonts/Questrial-Regular.ttf')
+}
+
+@font-face{
+    font-family: 'Monda';
+    src: url('../assets/fonts/Monda-Regular.ttf')
+}
+
+@font-face{
+    font-family: 'Monts';
+    src: url('../assets/fonts/Montserrat-Thin.ttf')
+}
+
+
 #test{
     font-family: 'UnicaOne';
 }
 
 body{
-    background-color: #fffff0;
+    background-color: #e0e0e0;
     height: 100%;
     padding: 0px;
     margin: 0px;
+    font-family: 'Raj', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 
 html{
@@ -50,8 +67,55 @@ html{
     justify-content: space-evenly;
 }
 
+.flex-col{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+nav.hide-on-small{
+    width: 100%;
+}
+
+a{
+    text-decoration: none;
+    cursor: default;
+
+}
+
+.sidenav-link-div{
+    width: 80%;
+    margin: 5px;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 30% 70%;
+    grid-template-rows: 100%;
+    grid-template-areas:
+        "icon label";
+    border-left: 1px solid rgb(189, 212, 255);
+    border-width: 1px;
+    text-align: left;
+    transition: 0.3s;
+}
+
+.sidenav-link-div:hover{
+    background-color: rgb(13, 12, 14);
+    border-left: 4px solid rgb(228, 245, 0);
+    margin-left: 7px;
+    font-weight: bold;
+}
+
+.sidenav-link-div:active{
+    background-color: rgb(2, 138, 131);
+}
+
+.sidenav-icon{
+    color: rgb(197, 197, 197);
+}
+
 .gray{
-    color: #333333;
+    background-color: rgb(30, 30, 36);
 }
 
 
@@ -60,17 +124,13 @@ html{
     height: 100%;
 }
 
-.navbar{
-    background-color: blue;
-}
-
 .header-lg{
     height: 100px;
     width: 100%;
 }
 
 .link{
-    color: orange;
+    color: rgb(189, 209, 228);
 }
 
 canvas{
@@ -78,4 +138,203 @@ canvas{
     border: 1px solid black;
 }
 
+.portfolio-page{
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(150px, auto) 1fr;
+    grid-template-rows: 140px 1fr;
+    /* column-gap: 5px; */
+    /* row-gap: 5px;  */
+    grid-template-areas: 
+        "header-left main"
+        "sidenav main";
 
+}
+
+.navbar{
+    background-color: rgb(30, 30, 36);
+    /* border-radius: 3px; */
+    border-top: 0.5px solid rgb(33, 90, 104);
+}
+
+.ul-symbol{
+    color:  rgba(33, 90, 104, 0.2);
+    position: absolute;
+    left: 23px;
+    top: 30px;
+    font-size: 5em;
+    z-index: 10;
+}
+
+.ul-header{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(30, 30, 36);
+    z-index: 5;
+}
+
+.ul-name{
+    font-size: 1.3em;
+    font-weight: regular;
+    margin: 0px;
+    padding: 10px;
+    padding-top: 20px;
+    color: rgb(189, 209, 228);
+    z-index: 15;
+    font-family: 'UnicaOne'
+}
+
+.ul-title{
+    font-size: 1em;
+    padding: 10px;
+    color: rgb(189, 209, 228);
+    z-index: 2;
+}
+
+.shadow{
+    box-shadow: 3px -1px 7px 0px rgb(54, 54, 54);
+}
+
+.shadow-right{
+    box-shadow: 10px 0 5px -2px #888;
+}
+
+.main-component{
+    /* background-color: rgb(192, 192, 191); */
+    overflow-y: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    
+}
+
+.main-component::-webkit-scrollbar {
+    display: none;
+}
+
+.main-header-container{
+    /* background-color: rgb(2, 138, 131); */
+    background-color: rgb(39, 76, 107);
+    /* color: rgb(189, 209, 228); */
+    color: rgb(201, 202, 202);
+    /* font-family: 'Raj'; */
+    height: 100px;
+    margin: 0px;
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+    z-index: -1;
+}
+
+.main-header{
+    margin: 0px;
+    font-size: 3em;
+    font-weight: thin;
+    font-family: "Monts"
+    /* font-family: "Raj"; */
+}
+
+.main-section-content{
+    padding-left: 15px;
+    color: rgb(30, 30, 36);
+}
+
+.top-header{
+    height: 141px;
+    width: 100%;
+    /* background-color: #fffff0; */
+    background-image: url('../assets/images/earth.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+.card{
+    box-shadow: 2px 2px 2px 1px rgb(90, 90, 90);
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: center;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 10px;
+    width: 85%;
+}
+
+.card-title{
+    font-size: 1.3em;
+    font-weight: lighter;
+    color: rgb(54, 54, 54);
+    margin-bottom: 5px;
+}
+
+.card-subtitle{
+    margin-top: 5px;
+    font-size: 1.0em;
+    font-weight: regular;
+    color: rgb(54, 54, 54);
+}
+
+.course-list{
+    /* list-style-type: '☁'; */
+    list-style: none;
+    font-weight: 100;
+}
+
+.course-card-header{
+    font-weight: regular;
+}
+
+.fa-circle{
+    color: rgb(39, 76, 107);
+}
+
+.clickable-icon{
+    background-color: rgb(39, 76, 107);
+    color: rgb(54, 54, 54);
+    font-size: 1.2em;
+    border-radius: 50%;
+    transition: .3s;
+    width: 2em; 
+    height: 2em; 
+    margin: 7px;
+    box-shadow: 1px 1px 1px 1px gray;
+    /* padding-left: 5px; */
+    /* vertical-align: bottom; */
+}
+
+.clickable-icon:hover{
+    background-color: white;
+    box-shadow: none;
+}
+
+.clickable-icon-color{
+    color: rgb(30,30,36);
+    transition: .3s
+}
+
+.clickable-icon-color:hover{
+    color: white;
+}
+
+.card-row-2{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.project-clickable-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.small-card{
+    width: 20%;
+    min-width: 150px;
+}

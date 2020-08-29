@@ -2,14 +2,24 @@ class HTMLComponent extends Component{
 
     constructor(ctx, viewArgs=null){
         super()
-        this.view = DisplayManager.parse(this.createView(), viewArgs)
+        this.view = this.createView()
+        
+        if(viewArgs && Object.keys(viewArgs).length > 0 && this.view){
+            DisplayManager.processElement(this.view, viewArgs)
+            // if(this.view.href){
+            //     this.view.href = DisplayManager.parse(unescape(this.view.href), viewArgs)
+            // }
+        }
         this.context = ctx
         this.activeEventListeners = {}
         this.eventListeners = {}
     }
 
     createView(){
-        return "<p>Hello World, I am {{firstName}} {{lastName}}</>"
+        // return "<p>Hello World, I am {{firstName}} {{lastName}}</>"
+        const p = document.createElement('p')
+        p.textContent = "Hello World, I am {{firstName}} {{lastName}}"
+        return p
     }
 
     async derender(){
@@ -46,7 +56,9 @@ class HTMLComponent extends Component{
     }
 
     async render(){
-        this.context.innerHTML = this.view
+        if(this.view){
+            this.context.appendChild(this.view)
+        }
         this.declareBindingsAndEventListeners()
         this.establishEventListeners()
         await this.fetchAndRenderData()

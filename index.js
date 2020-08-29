@@ -3,7 +3,8 @@
  document.addEventListener("DOMContentLoaded", () => {
 
     const root = document.querySelector('#root')
-    const canvasApp = new CanvasApp(root)
+    // const canvasApp = new CanvasApp(root)
+    renderHTMLSite()
  })
 
 

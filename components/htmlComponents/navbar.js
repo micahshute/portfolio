@@ -2,34 +2,25 @@ class Navbar extends HTMLManager{
 
     constructor(ctx, viewArgs){
         super(ctx, viewArgs)
+
+        this.add(new SidenavLink(this.view, 'user', 'About', {url: "#about"}))
+        this.add(new SidenavLink(this.view, 'university', 'Education', {url: "#education"}))
+        this.add(new SidenavLink(this.view, 'laptop-code', 'Skillset', {url: "#skillset"}))
+        this.add(new SidenavLink(this.view, 'project-diagram', "Projects", {url: "#projects"}))
+        this.add(new SidenavLink(this.view, 'pen-fancy', "Blog", {url: "#blog"}))
+        this.add(new SidenavLink(this.view, 'envelope', "Contact", {url: "#contact"}))
+        this.add(new SidenavLink(this.view, 'address-card', "Bio", {url: "bio"}))
+        this.add(new SidenavLink(this.view, 'file-alt', "Resume", {url: "#resume"}))
+
     }
 
 
 
     createView(){
-        return `
-            <div class="flex-column full navbar" id="links-container">
-                <div id="home-link-div"></div>
-                <div id="projects-link-div"></div>
-                <div id="bio-link-div"></div>
-            <div>
-        `
+        const div = document.createElement('nav')
+        div.className = "flex-col full navbar hide-on-small shadow"
+        div.id = "links-container"
+        return div
     }
 
-    declareBindingsAndEventListeners(){
-        this.homeLinkDiv = document.querySelector('#home-link-div')
-        this.projectsLinkDiv = document.querySelector('#projects-link-div')
-        this.bioLinkDiv = document.querySelector('#bio-link-div')
-        this.add_and_render(new Link(this.homeLinkDiv, {text: "Home", id: 'home-link'}))
-        this.add_and_render(new Link(this.projectsLinkDiv, {text: "Projects"}))
-        this.add_and_render(new Link(this.bioLinkDiv, {text: "Bio"}))
-    }
-
-    finalBindingsAndEventListeners(){
-        this.homeLink = document.querySelector('#home-link')
-        this.homeLink.addEventListener('click', e => {
-            e.preventDefault()
-            alert('Parent says home link clicked')
-        })
-    }
 }

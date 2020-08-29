@@ -78,6 +78,10 @@ class CanvasApp extends Picture{
                 }),
             new Collidable(new Door(this.canvas, {x: "9%", y: "70%"}, doorWidth, doorHeight, {label: "Site Portal"}),
                 () => {
+                    window.cancelAnimationFrame(this.animationId)
+                    this.children = []
+                    this.sprite = null
+                    this.container.innerHTML = ''
                     renderHTMLSite()
                 })
         ]
@@ -167,7 +171,7 @@ class CanvasApp extends Picture{
             collisionObj.collideHook()
         }
         this.lastTime = now
-        requestAnimationFrame(this.gameLoop.bind(this))
+        this.animationId = requestAnimationFrame(this.gameLoop.bind(this))
     }
 
 
