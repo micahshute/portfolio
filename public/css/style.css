@@ -443,4 +443,10 @@ canvas{
     .hamburger:hover{
         color: rgb(189, 209, 228);
     }
+
+    .sidenav-modal{
+        height: 100%;
+        width: 100%;
+        grid-area: sidenav-modal;
+    }
 }

@@ -22,7 +22,21 @@ class LeftHeader extends HTMLManager{
 
 
     displaySidebarModal(){
-        alert("display modal")
+        const navdiv = document.createElement('div')
+        navdiv.className = "sidenav-modal"
+        const navbar = new Navbar(navdiv)
+        navbar.view.classList.remove('hide-on-small')
+        navbar.view.classList.remove('shadow')
+        navbar.render()
+        const modal = new Modal(navdiv, {
+            style: {
+                display: "grid",
+                gridTemplateColumns: "150px 1fr",
+                gridTemplateRows: "100px 1fr",
+                gridTemplateAreas: '"nothimgA nothingB" "sidenav-modal nothingC"'
+            }
+        })//this.view, navdiv)
+        modal.render()
     }
 
 

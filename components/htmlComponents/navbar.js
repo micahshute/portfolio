@@ -17,7 +17,7 @@ class Navbar extends HTMLManager{
 
     createView(){
         const div = document.createElement('nav')
-        div.className = "flex-col full navbar hide-on-small shadow"
+        div.className = "flex-col full navbar hide-on-small shadow {{className}}"
         div.id = "links-container"
         return div
     }
