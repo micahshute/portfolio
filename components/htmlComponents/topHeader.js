@@ -1,7 +1,15 @@
 class TopHeader extends HTMLComponent{
 
-    constructor(parent){
+    constructor(parent, quote){
         super(parent, {})
+    }
+
+    addQuote(){
+
+    }
+
+    removeQuote(){
+        z
     }
 
     createView(){

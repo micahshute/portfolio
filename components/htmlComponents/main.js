@@ -3,12 +3,25 @@ class Main extends HTMLManager{
     constructor(parent){
         super(parent, {})
         this.view.onscroll = () => this.view.scrollLeft = 0
+
+
+        // MARK: QUOTES
         const topHeader = new TopHeader(this.view)
+
+
+        //MARK: ABOUT
 
         const aboutSection = new MainSection(this.view, "About")
         const aboutText = document.createElement('p')
-        aboutText.textContent = "Hello world"
+        aboutText.innerHTML = about
+        aboutText.className = 'about-me'
+        aboutText.style.lineHeight = 2
         aboutSection.sectionContent.add(aboutText)
+
+
+
+
+        //MARK: EDUCATION
 
         const educationSection = new MainSection(this.view, "Education")
         const udCard = new Card(educationSection.view, {
@@ -139,13 +152,53 @@ class Main extends HTMLManager{
         educationSection.sectionContent.add(usnaCard)
 
 
+
+
+        //MARK: SKILLS 
+
         const skillsSection = new MainSection(this.view, "Skillset")
+
+        const languagesCard = new SkillCard(
+            skillsSection.view, 
+            "Languages", 
+            languages
+        )
+        const frameworksCard = new SkillCard(
+            skillsSection.view, 
+            "Libraries / Frameworks", 
+            frameworks,
+            {
+                className: "bold smaller-font"
+            }
+        )
+        
+        const otherTechnologiesCard = new SkillCard(
+            skillsSection.view,
+            "Other Technologies",
+            technologies
+        )
+
+        const certificationsCard = new SkillCard(
+            skillsSection.view,
+            "Certifications and Honors",
+            certifications,
+            {
+                className: "bold small-font"
+            }
+        )
+
+        skillsSection.add(languagesCard)
+        skillsSection.add(frameworksCard)
+        skillsSection.add(otherTechnologiesCard)
+        skillsSection.add(certificationsCard)
+
+
+
+
+        //MARK: PROJECTS
 
         const projectsSection = new MainSection(this.view, "Projects")
 
-        // const cardHolderDiv = document.createElement('div')
-        // cardHolderDiv.className = 'card-scroll'
-        // const cardHolder1 = new ElementWrapper(projectsSection.view, cardHolderDiv)
         const cardHolder1 = new HorizontalViewer(projectsSection.view)
 
         const rbimgCard = new Card(cardHolder1.view, {
@@ -169,11 +222,6 @@ class Main extends HTMLManager{
 
         const rbimgShortDesc = document.createElement('p')
         rbimgShortDesc.textContent = "PNG file parsing, processing, and writing"
-
-        
-        // const rbimgDesc = document.createElement('p')
-        // rbimgDesc.textContent = projects.rbimg.description
-        
 
         const clickableContainer = document.createElement('div')
         clickableContainer.className = 'project-clickable-container'
@@ -383,11 +431,20 @@ class Main extends HTMLManager{
         smallCardHolder.add(bigo)
         blogSection.add(smallCardHolder)
 
+        
+
+        //MARK: CONTACT
+
         const contactSection = new MainSection(this.view, "Contact")
+
+
+
+
+        //MARK: BIO
 
         const bioSection = new MainSection(this.view, "Bio")
 
-        const resumeSection = new MainSection(this.view, "Resume")
+        // const resumeSection = new MainSection(this.view, "Resume")
 
         this.add(topHeader)
         this.add(aboutSection)
@@ -397,7 +454,7 @@ class Main extends HTMLManager{
         this.add(blogSection)
         this.add(contactSection)
         this.add(bioSection)
-        this.add(resumeSection)
+        // this.add(resumeSection)
     }
 
     createView(){

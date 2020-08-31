@@ -1,7 +1,14 @@
 class SidenavLink extends HTMLManager{
 
 
-    constructor(parent, icon, label, {url = "#", callback= () => null, color= "white"}){
+    constructor(parent, icon, label, {
+        url = "#", 
+        callback= () => {
+            window.location.hash = url
+            history.pushState({}, '', '/')
+        }, 
+        color= "white"
+    }){
         super(parent, {})
         const iconGrid = new GridContainer(this.view, "icon")
         const labelGrid = new GridContainer(this.view, "label")
@@ -10,10 +17,7 @@ class SidenavLink extends HTMLManager{
         const link = new Link(labelGrid.view, {text: label, id: `${label.toLowerCase()}-link`,url: "#", onClick: (e) => { e.preventDefault() }})
         labelGrid.add(link)
         iconGrid.add(i)
-        this.view.onclick = () => {
-            window.location.hash = url
-            history.pushState({}, '', '/')
-        }
+        this.view.onclick = callback
         this.add(iconGrid)
         this.add(labelGrid)
     }

@@ -328,7 +328,9 @@ canvas{
 }
 
 .clickable-icon-color{
-    color: rgb(30,30,36);
+    color: rgb(0, 6, 39);
+    /* color: rgb(30,30,36); */
+    /* color: rgb(175,175,175); */
     transition: .3s
 }
 
@@ -415,6 +417,69 @@ canvas{
     display: none;
 }
 
+.bold{
+    font-weight: bolder;
+}
+
+.margin-bottom-md{
+    margin-bottom: 2em;
+}
+
+.smaller-font{
+    font-size: 0.9em;
+}
+
+.small-font{
+    font-size: 0.7em;
+}
+
+.about-me{
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.larger-font{
+    font-size: 1.5em;
+}
+
+.large-font{
+    font-size: 1.9em;
+}
+
+.emph1{
+    font-size: 1.1em;
+    font-weight: 600;
+    font-family: "Quest";
+}
+
+.emph2{
+    font-size: 1.1em;
+    font-weight: 600;
+    font-family: "Quest";
+    padding-bottom: 4px;
+    border-bottom: 5px solid rgb(39, 76, 107);
+    /* border-bottom: 5px solid rgb(33, 90, 104); */
+    border-radius: 5px;
+}
+
+.emph3{
+    font-size: 1.1em;
+    padding-bottom: 4px;
+    font-weight: 600;
+    font-family: "Quest";
+    /* border-bottom: 5px solid rgb(255, 181, 43); */
+    border-bottom: 5px solid rgb(39, 76, 107);
+    border-radius: 5px;
+} 
+
+.emph4{
+    font-size: 1.1em;
+    padding-bottom: 4px;
+    font-weight: 600;
+    font-family: "Quest";
+    border-bottom: 5px solid rgb(39, 76, 107);
+    border-radius: 5px;
+}
 
 
 
@@ -440,12 +505,12 @@ canvas{
         width: 100%;
     }
 
-    a.anchor {
+    /* a.anchor {
         display: block;
         position: relative;
         top: -100px;
         visibility: hidden;
-    }
+    } */
 
     .header-left{
         position: fixed;

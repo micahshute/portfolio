@@ -9,7 +9,8 @@ class Navbar extends HTMLManager{
         this.add(new SidenavLink(this.view, 'pen-fancy', "Blog", {url: "#blog"}))
         this.add(new SidenavLink(this.view, 'envelope', "Contact", {url: "#contact"}))
         this.add(new SidenavLink(this.view, 'address-card', "Bio", {url: "bio"}))
-        this.add(new SidenavLink(this.view, 'file-alt', "Resume", {url: "#resume"}))
+        this.add(new SidenavLink(this.view, 'file-alt', "Resume", {callback: () => window.open(resumeLink, "_blank")}))
+        this.add(new SidenavLink(this.view, 'dungeon', "Explore", {callback: () => renderCanvasSite()}))
 
     }
 

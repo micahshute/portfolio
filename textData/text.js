@@ -74,3 +74,154 @@ const blogs = {
         link: "https://medium.com/cantors-paradise/understanding-the-monty-hall-problem-e9aa24cc62ac?source=friends_link&sk=08ef79379758252070b8ba66e0bbbdb5"
     }
 }
+
+const languages = {
+    ruby: {
+        img: '../../public/assets/images/ruby.png',
+        label: 'Ruby'
+    }, 
+
+    java: {
+        img: '../../public/assets/images/java.png',
+        label: 'Java'
+    },
+
+    python: {
+        img: '../../public/assets/images/python.png',
+        label: 'Python'
+    },
+
+    javascript: {
+        img: '../../public/assets/images/js.png',
+        label: 'JavaScript'
+    },
+
+    swift: {
+        img: '../../public/assets/images/swift.jpeg',
+        label: 'Swift'
+    }
+}
+
+const frameworks = {
+    rails: {
+        img: '../../public/assets/images/rails.png',
+        label: "Ruby on Rails"
+    },
+
+    react: {
+        img: '../../public/assets/images/react.png',
+        label: 'React'
+    },
+    express: {
+        img: '../../public/assets/images/nodejsAlt.png',
+        label: "ExpressJS"
+    },
+    
+    sinatra: {
+        img: '../../public/assets/images/sinatra.png',
+        label: "Sinatra"
+    },
+
+    redux: {
+        img: '../../public/assets/images/redux.png',
+        label: "Redux"
+    },
+
+
+    tensorFlow: {
+        img: '../../public/assets/images/tensorflow.png',
+        label: "TensorFlow"
+    },
+    reactNative: {
+        img: '../../public/assets/images/react.png',
+        label: "React Native"
+    }
+}
+
+const technologies = {
+    postgres: {
+        img: '../../public/assets/images/postgres.png',
+        label: "PostgreSQL"
+    },
+
+    mongo: {
+        img: '../../public/assets/images/mongo.jpeg',
+        label: "MongoDB"
+    },
+
+    html: {
+        img: '../../public/assets/images/html.png',
+        label: "HTML5"
+    },
+
+    css: {
+        img: '../../public/assets/images/css.png',
+        label: "CSS"
+    },
+
+    matlab: {
+        img: '../../public/assets/images/matlab.jpeg',
+        label: 'Matlab'
+    }
+}
+
+const certifications = {
+    java: {
+        img: '../../public/assets/images/java.png',
+        label: "Java SE8 OCA Qualified"
+    },
+
+    triplebyte: {
+        img: '../../public/assets/images/triplebyte.png',
+        label: 'Triplebyte Certified Generalist Software Engineer'
+    },
+
+    pkp: {
+        img: '../../public/assets/images/pkp.png',
+        label: 'Phi Kappa Phi Honor Society'
+    },
+
+    eit: {
+        img: '../../public/assets/images/ncees.jpeg',
+        label: "EIT - Electrical And Computer Eng."
+    }
+}
+
+const resumeLink = "https://docs.google.com/document/d/1FBJBXWZxaofwN12zgTqkvkCanTCjN_ZF5SigoPU3waE/edit?usp=sharing"
+const about = `I am a <span class="emph1">Software Engineer</span> who is passionate about <span class="emph2">solving difficult problems with elegant code</span>, <span class="emph3">being challenged</span>, and most imporantly <span class="emph4">continuous learning.</span>`
+
+const QUOTES = [
+    {
+        quote: "Knowledge is power.",
+        author: "Francis Bacon"
+    },
+    {
+        
+        quote: "Education never ends[...]. It is a series of lessons, with the greatest for the last.",
+        author: "Sherlock Holmes"
+    },
+    {
+        quote: "Simplicity, carried to the extreme, becomes elegance.",
+        author: "Jon Franklin"
+    },
+    {
+        quote: "Make everything as simple as possible, but not simpler.",
+        author: "Albert Einstein"
+    },
+    {
+        quote: "The best way to predict the future is to implement it.",
+        author: "David Heinemeier Hansson"
+    },
+    {
+        quote: "Programs must be written for people to read, and only incidentally for machines to execute.",
+        author: "Harold Abelson"
+    },
+    {
+        quote: "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.",
+        author: "Martin Fowler"
+    },
+    {
+        quote: "Truth can only be found in one place: the code.",
+        author: "Robert Martin"
+    }
+]

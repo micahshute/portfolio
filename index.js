@@ -1,4 +1,5 @@
-
+const INTERVALS = []
+const TIMEOUTS = []
  
  document.addEventListener("DOMContentLoaded", () => {
     const root = document.querySelector('#root')
@@ -15,6 +16,12 @@
  }
 
  function renderCanvasSite(){
+    for(let i of INTERVALS){
+       window.clearInterval(i)
+    }
+    for(let t of TIMEOUTS){
+       window.clearTimeout(t)
+    }
     const root = document.querySelector("#root")
     root.innerHTML = ''
     new CanvasApp(root)
