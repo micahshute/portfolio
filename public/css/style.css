@@ -404,7 +404,7 @@ canvas{
 
 
 
-@media only screen and (max-width: 750px){
+@media only screen and (max-width: 990px){
     .hide-on-small{
         display: none;
     }
@@ -417,9 +417,26 @@ canvas{
         grid-template-columns: 150px 1fr;
         grid-template-rows: 100px 1fr;
         grid-template-areas: 
-            "header-left header-left"
+            "blank blank"
             "main main";
     
+    }
+
+    a.anchor {
+        display: block;
+        position: relative;
+        top: -100px;
+        visibility: hidden;
+    }
+
+    .header-left{
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 24;
+        width: 100%;
+        height: 100px;
+        box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.5);
     }
 
     .ul-symbol{
