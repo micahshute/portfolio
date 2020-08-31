@@ -2,7 +2,7 @@ class Main extends HTMLManager{
 
     constructor(parent){
         super(parent, {})
-
+        this.view.onscroll = () => this.view.scrollLeft = 0
         const topHeader = new TopHeader(this.view)
 
         const aboutSection = new MainSection(this.view, "About")
@@ -170,6 +170,7 @@ class Main extends HTMLManager{
         const rbimgShortDesc = document.createElement('p')
         rbimgShortDesc.textContent = "PNG file parsing, processing, and writing"
 
+        
         // const rbimgDesc = document.createElement('p')
         // rbimgDesc.textContent = projects.rbimg.description
         
@@ -187,7 +188,8 @@ class Main extends HTMLManager{
         const infoIcon = new IconWithBg(clickableContainer, 'info', {iconClassName: 'clickable-icon-color'})
         infoIcon.view.classList.add('clickable-icon')
         infoIcon.view.onclick = () => {
-            alert("rbimg stuff")
+            const modal = new ProjectDescriptionModal("Rbimg", projects.rbimg.description)
+            modal.render()
         }
 
         const clickableContainerManager = new ElementWrapper(rbimgCard.view, clickableContainer)
@@ -249,7 +251,8 @@ class Main extends HTMLManager{
         }
 
         oeInfoIcon.view.onclick = () => {
-            alert("Odin's Eye Info")
+            const modal = new ProjectDescriptionModal("Odin's Eye", projects.odinsEye.description)
+            modal.render()
         }
 
         oeClickableContainer.add(oeSourceCodeIcon)
@@ -297,7 +300,8 @@ class Main extends HTMLManager{
             window.open(projects.digiproc.sourceCode, "_blank")
         }
         dpInfoIcon.view.onclick = () => {
-            alert("Digiproc Info")
+            const modal = new ProjectDescriptionModal('Digiproc', projects.digiproc.description)
+            modal.render()
         }
 
         dpClickableContainer.add(dpSourceCodeIcon)
@@ -343,7 +347,8 @@ class Main extends HTMLManager{
             window.open(projects.space.sourceCode, "_blank")
         }
         spaceInfoIcon.view.onclick = () => {
-            alert("Space Info")
+            const modal = new ProjectDescriptionModal('Gravity Sim', projects.space.description)
+            modal.render()
         }
 
         spaceClickableContainer.add(spaceSourceCodeIcon)
@@ -363,33 +368,19 @@ class Main extends HTMLManager{
 
         const smallCardHolder = new HorizontalViewer(blogSection.view)
 
-        const dijkstra = new Card(smallCardHolder.view, {
-            title: "Dijstra's Algorithm",
-            className: 'small-card'
-        })
-
-        const dijDes = document.createElement('p')
-        dijDes.textContent = "Walkthrough of Dijkstra's Algorithm, Graphs, and Heaps, how to make it O(nlgn), and working code in Python"
-
-        dijkstra.add(dijDes)
+        const dijkstra = new BlogCard(smallCardHolder.view, blogs.dijkstra.title, blogs.dijkstra.description, blogs.dijkstra.link)
+        const pca = new BlogCard(smallCardHolder.view, blogs.pca.title, blogs.pca.description, blogs.pca.link)
+        const montyHall = new BlogCard(smallCardHolder.view, blogs.monty.title, blogs.monty.description, blogs.monty.link)
+        const bigo = new BlogCard(smallCardHolder.view, blogs.bigo.title, blogs.bigo.description, blogs.bigo.link)
+        const fft = new BlogCard(smallCardHolder.view, blogs.fft.title, blogs.fft.description, blogs.fft.link)
 
 
-        const dijClickableContainerDiv = document.createElement('div')
-        dijClickableContainerDiv.className = 'project-clickable-container'
-        const dijClickableContainer = new ElementWrapper(dijkstra.view, dijClickableContainerDiv)
-
-        const dijIcon = new IconWithBg(dijClickableContainer.view, 'newspaper', {iconClassName: 'clickable-icon-color'})
-        dijIcon.view.classList.add('clickable-icon')
-
-        dijIcon.view.onclick = () => {
-            window.open(projects.space.sourceCode, "_blank")
-        }
-
-
-        dijClickableContainer.add(dijIcon)
-        dijkstra.addContent(dijClickableContainer)
 
         smallCardHolder.add(dijkstra)
+        smallCardHolder.add(pca)
+        smallCardHolder.add(montyHall)
+        smallCardHolder.add(fft)
+        smallCardHolder.add(bigo)
         blogSection.add(smallCardHolder)
 
         const contactSection = new MainSection(this.view, "Contact")

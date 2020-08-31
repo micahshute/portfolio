@@ -139,6 +139,7 @@ canvas{
     width: 100%;
     max-width: 100%;
     display: grid;
+    overflow-x: hidden;
     grid-template-columns: 150px 1fr;
     grid-template-rows: 140px 1fr;
     grid-template-areas: 
@@ -202,10 +203,23 @@ canvas{
     box-shadow: 10px 0 5px -2px #888;
 }
 
+.main{
+    /* width: calc(100% - 150px);
+    width: -o-calc(100% - 150px); 
+    width: -webkit-calc(100% - 150px); 
+    width: -moz-calc(100% - 150px);  */
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 .main-component{
     /* background-color: rgb(192, 192, 191); */
     overflow-y: scroll;
-    overflow-x: hidden;
+    /* width: calc(100% - 150px);
+    width: -o-calc(100% - 150px); 
+    width: -webkit-calc(100% - 150px); 
+    width: -moz-calc(100% - 150px);  */
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
     
@@ -420,6 +434,10 @@ canvas{
             "blank blank"
             "main main";
     
+    }
+
+    .main-component{
+        width: 100%;
     }
 
     a.anchor {

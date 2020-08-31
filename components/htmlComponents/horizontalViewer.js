@@ -119,11 +119,11 @@ class HorizontalViewer extends HTMLManager{
     }
 
     scrollDistance(size=240){
-        return this.cardsShown() * size
+        return Math.max(this.cardsShown() * size, 240)
     }
 
     cardsShown(size=240){
-        return Math.floor((this.viewSize() - 55) / size)
+        return Math.floor((this.viewSize() - 65) / size)
     }
 
     shouldShowLeftButton(){

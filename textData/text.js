@@ -47,4 +47,30 @@ const bio = `I graduated from the United States Naval Academy in 2012 with a B.S
         
 }
 
-
+const blogs = {
+    dijkstra: {
+        title: "Dijkstra's Shortest Path Algorithm",
+        description: "Walkthrough of Dijkstra's Algorithm, Graphs, and Heaps, how to make it O(nlgn), and working code in Python",
+        link: "https://medium.com/cantors-paradise/dijkstras-shortest-path-algorithm-in-python-d955744c7064?source=friends_link&sk=6c6b81ab7f472d3f8540840a794196bc"
+    },
+    pca: {
+        title: "Principal Component Analysis",
+        description: "Breakdown of intuition and mathematics behind PCA, with custom working Ruby code to demonstrate",
+        link: "https://medium.com/cantors-paradise/principal-component-analysis-the-basics-of-dimensionality-reduction-9ecd10d98737?source=friends_link&sk=68364bdc5cbf431001a89f92ab1f1654"
+    },
+    bigo: {
+        title: "Intro to Big O and Sorting",
+        description: "Overview of asymptotic runtime analysis and demonstrations applying it to basic sorting algorithms",
+        link: "https://medium.com/cantors-paradise/basics-of-big-o-sorting-94d0c04d0f53?source=friends_link&sk=d2d70f92e9b7107976850bd995306563"
+    },
+    fft: {
+        title: "The Fast Fourier Transform",
+        description: "What is the Fast Fourier Transform, and how to program it in O(nlgn) time",
+        link: "https://medium.com/@micah.shute/divide-and-conquer-the-fast-fourier-transform-f61cb060710b?source=friends_link&sk=36f9dead2df4a74d118bb5ee54d679ab"
+    },
+    monty: {
+        title: "Understanding the Monty Hall Problem",
+        description: "Intuition, math, and code behind why you should switch doors",
+        link: "https://medium.com/cantors-paradise/understanding-the-monty-hall-problem-e9aa24cc62ac?source=friends_link&sk=08ef79379758252070b8ba66e0bbbdb5"
+    }
+}

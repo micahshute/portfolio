@@ -1,5 +1,12 @@
 class HTMLComponent extends Component{
 
+
+    static getView(args){
+        const el = new this(document.createElement('div'), args)
+        el.render()
+        return el.view
+    }
+
     constructor(ctx, viewArgs=null){
         super()
         this.view = this.createView()
