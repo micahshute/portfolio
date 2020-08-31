@@ -8,7 +8,11 @@ class HTMLManager extends HTMLComponent{
     render(){ 
         super.render()
         for(let child of this.children){
+            try{
             child.render()
+            }catch(e){
+                debugger
+            }
         }
     }
      

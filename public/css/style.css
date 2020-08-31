@@ -36,10 +36,6 @@
 }
 
 
-#test{
-    font-family: 'UnicaOne';
-}
-
 body{
     background-color: #e0e0e0;
     height: 100%;
@@ -141,11 +137,10 @@ canvas{
 .portfolio-page{
     height: 100%;
     width: 100%;
+    max-width: 100%;
     display: grid;
-    grid-template-columns: minmax(150px, auto) 1fr;
+    grid-template-columns: 150px 1fr;
     grid-template-rows: 140px 1fr;
-    /* column-gap: 5px; */
-    /* row-gap: 5px;  */
     grid-template-areas: 
         "header-left main"
         "sidenav main";
@@ -157,6 +152,11 @@ canvas{
     /* border-radius: 3px; */
     border-top: 0.5px solid rgb(33, 90, 104);
 }
+
+.hamburger{
+    display: none;
+}
+
 
 .ul-symbol{
     color:  rgba(33, 90, 104, 0.2);
@@ -205,6 +205,7 @@ canvas{
 .main-component{
     /* background-color: rgb(192, 192, 191); */
     overflow-y: scroll;
+    overflow-x: hidden;
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
     
@@ -335,6 +336,111 @@ canvas{
 }
 
 .small-card{
-    width: 20%;
-    min-width: 150px;
+    width: 200px;
+    min-width: 200px;
+    display: inline-flex;
+    transition: transform 1s ease-in-out;
+    -webkit-transition: transform 1s ease-in-out;
+    -moz-transition:transform 1s ease-in-out;
+    -ms-transition:transform 1s ease-in-out;
+}
+
+
+.horizontal-viewer{
+    overflow: hidden;
+    display: flex;
+    width: 100%;
+    max-width: 100%;
+    margin-left: 20px;
+    justify-content: flex-start;
+    margin: 0px;
+    padding: 0px;
+}
+
+.horizontal-view-scroller{
+    border: none;
+    outline: none;
+    flex: 1 0 40px;
+    color: rgba(0,0,0,0.7);
+    z-index: 20;
+    background-color: rgba(54,54,54,0.1);
+    transition: .3s;
+    width: 40px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.horizontal-view-scroller:hover{
+    border: none;
+    color: white;
+    background-color: rgba(54,54,54,0.7);
+}
+
+.horizontal-view-scroller:focus{
+    border: none;
+}
+
+.horizontal-view-scroller:active{
+    border: none;
+    color: rgb(39, 76, 107);
+}
+
+.horizontal-view-scroller:visited{
+    border: none;
+}
+
+.viewerIcon{
+    font-size: 2em;
+}
+
+.flex-space-md{
+    flex: 1 0 40px;
+}
+
+.hamburger{
+    display: none;
+}
+
+
+
+
+@media only screen and (max-width: 750px){
+    .hide-on-small{
+        display: none;
+    }
+
+    .portfolio-page{
+        height: 100%;
+        width: 100%;
+        max-width: 100%;
+        display: grid;
+        grid-template-columns: 150px 1fr;
+        grid-template-rows: 100px 1fr;
+        grid-template-areas: 
+            "header-left header-left"
+            "main main";
+    
+    }
+
+    .ul-symbol{
+        color:  rgba(33, 90, 104, 0.2);
+        position: absolute;
+        left: 45%;
+        top: 24px;
+        font-size: 3em;
+        z-index: 10;
+    }
+
+    .hamburger{
+        display: inline;
+        position: absolute;
+        font-size: 2.3em;
+        top: 27px;
+        left: 40px;
+        color: rgb(39, 76, 107);
+    }
+
+    .hamburger:hover{
+        color: rgb(189, 209, 228);
+    }
 }

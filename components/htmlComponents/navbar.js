@@ -2,7 +2,6 @@ class Navbar extends HTMLManager{
 
     constructor(ctx, viewArgs){
         super(ctx, viewArgs)
-
         this.add(new SidenavLink(this.view, 'user', 'About', {url: "#about"}))
         this.add(new SidenavLink(this.view, 'university', 'Education', {url: "#education"}))
         this.add(new SidenavLink(this.view, 'laptop-code', 'Skillset', {url: "#skillset"}))

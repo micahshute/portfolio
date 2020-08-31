@@ -143,12 +143,12 @@ class Main extends HTMLManager{
 
         const projectsSection = new MainSection(this.view, "Projects")
 
-        const cardHolderDiv = document.createElement('div')
-        cardHolderDiv.className = 'card-row-2'
-        const cardHolder = new ElementWrapper(projectsSection.view, cardHolderDiv)
+        // const cardHolderDiv = document.createElement('div')
+        // cardHolderDiv.className = 'card-scroll'
+        // const cardHolder1 = new ElementWrapper(projectsSection.view, cardHolderDiv)
+        const cardHolder1 = new HorizontalViewer(projectsSection.view)
 
-
-        const rbimgCard = new Card(cardHolder.view, {
+        const rbimgCard = new Card(cardHolder1.view, {
             title: "Rbimg",
             subtitle: "Ruby Gem",
             className: "small-card",
@@ -198,10 +198,199 @@ class Main extends HTMLManager{
         rbimgCard.addContent(clickableContainerManager)
 
 
-        cardHolder.add(rbimgCard)
-        projectsSection.sectionContent.add(cardHolder)
+        const odinsEyeCard = new Card(cardHolder1.view, {
+            title: "Odins's Eye",
+            subtitle: "Fullstack Web App",
+            className: "small-card",
+            subtitleOpts: {
+                style: {
+                    display: 'inline-block'
+                }
+            }
+        })
+
+        const imgContainer = new ElementWrapper(odinsEyeCard.view, document.createElement('div'))
+        const railsImg = document.createElement('img')
+        railsImg.src = '../../public/assets/images/rails.png'
+        railsImg.width = 20
+        railsImg.height = 25
+        railsImg.style.marginRight = '10px'
+        const jsImg = document.createElement('img')
+        jsImg.src = '../../public/assets/images/js.png'
+        jsImg.width = 20
+        jsImg.height = 20
+        imgContainer.add(railsImg)
+        imgContainer.add(jsImg)
+        odinsEyeCard.addContent(imgContainer)
+
+        const oeShortDesc = document.createElement('p')
+        oeShortDesc.textContent = "Markdown blogging app with social media, messaging, and virtual classrooms"
+        
+        odinsEyeCard.addContent(oeShortDesc)
+
+        const oeClickableContainerDiv = document.createElement('div')
+        oeClickableContainerDiv.className = 'project-clickable-container'
+        const oeClickableContainer = new ElementWrapper(odinsEyeCard.view, oeClickableContainerDiv)
+
+        const oeInfoIcon = new IconWithBg(oeClickableContainer.view, 'info', {iconClassName: 'clickable-icon-color'})
+        const oeSourceCodeIcon =  new IconWithBg(oeClickableContainer.view, 'code', {iconClassName: 'clickable-icon-color'})
+        const oeHostedSiteIcon = new IconWithBg(oeClickableContainer.view, 'laptop', {iconClassName: 'clickable-icon-color' })
+        
+        oeInfoIcon.view.classList.add('clickable-icon')
+        oeSourceCodeIcon.view.classList.add('clickable-icon')
+        oeHostedSiteIcon.view.classList.add('clickable-icon')
+
+        oeSourceCodeIcon.view.onclick = () => {
+            window.open(projects.odinsEye.sourceCode, "_blank")
+        }
+
+        oeHostedSiteIcon.view.onclick = () => {
+            window.open(projects.odinsEye.hostedSite, "_blank")
+        }
+
+        oeInfoIcon.view.onclick = () => {
+            alert("Odin's Eye Info")
+        }
+
+        oeClickableContainer.add(oeSourceCodeIcon)
+        oeClickableContainer.add(oeHostedSiteIcon)
+        oeClickableContainer.add(oeInfoIcon)
+        
+        odinsEyeCard.add(oeClickableContainer)
+
+
+
+        const digiprocCard = new Card(cardHolder1.view, {
+            title: "Digiproc",
+            subtitle: "Ruby Gem",
+            className: "small-card",
+            subtitleOpts: {
+                style: {
+                    display: 'inline-block',
+                },
+                withImage: {
+                    url: '../../public/assets/images/ruby.png',
+                    width: 20,
+                    height: 20,
+                    style: {
+                        marginLeft: '10px'
+                    }
+                }
+            }
+        })
+
+        const digiprocShortDesc = document.createElement('p')
+        digiprocShortDesc.textContent = "Digital Signal Processing gem which allows FFT calculation, filtering, encoding, etc."
+
+        digiprocCard.addContent(digiprocShortDesc)
+
+        const dpClickableContainerDiv = document.createElement('div')
+        dpClickableContainerDiv.className = 'project-clickable-container'
+        const dpClickableContainer = new ElementWrapper(digiprocCard.view, dpClickableContainerDiv)
+
+        const dpInfoIcon = new IconWithBg(dpClickableContainer.view, 'info', {iconClassName: 'clickable-icon-color'})
+        const dpSourceCodeIcon =  new IconWithBg(dpClickableContainer.view, 'code', {iconClassName: 'clickable-icon-color'})
+        dpInfoIcon.view.classList.add('clickable-icon')
+        dpSourceCodeIcon.view.classList.add('clickable-icon')
+
+        dpSourceCodeIcon.view.onclick = () => {
+            window.open(projects.digiproc.sourceCode, "_blank")
+        }
+        dpInfoIcon.view.onclick = () => {
+            alert("Digiproc Info")
+        }
+
+        dpClickableContainer.add(dpSourceCodeIcon)
+        dpClickableContainer.add(dpInfoIcon)
+        
+        digiprocCard.add(dpClickableContainer)
+
+
+        const spaceCard = new Card(cardHolder1.view, {
+            title: "JS Gravity Sim",
+            subtitle: "JS Frontend App",
+            className: "small-card",
+            subtitleOpts: {
+                style: {
+                    display: 'inline-block',
+                },
+                withImage: {
+                    url: '../../public/assets/images/js.png',
+                    width: 20,
+                    height: 20,
+                    style: {
+                        marginLeft: '10px'
+                    }
+                }
+            }
+        })
+
+        const spaceShortDesc = document.createElement('p')
+        spaceShortDesc.textContent = "Simple frontend app which can simulate gravitational interactions between large masses (Newtonian Calculations)"
+
+        spaceCard.addContent(spaceShortDesc)
+
+        const spaceClickableContainerDiv = document.createElement('div')
+        spaceClickableContainerDiv.className = 'project-clickable-container'
+        const spaceClickableContainer = new ElementWrapper(spaceCard.view, spaceClickableContainerDiv)
+
+        const spaceInfoIcon = new IconWithBg(spaceClickableContainer.view, 'info', {iconClassName: 'clickable-icon-color'})
+        const spaceSourceCodeIcon =  new IconWithBg(spaceClickableContainer.view, 'code', {iconClassName: 'clickable-icon-color'})
+        spaceInfoIcon.view.classList.add('clickable-icon')
+        spaceSourceCodeIcon.view.classList.add('clickable-icon')
+
+        spaceSourceCodeIcon.view.onclick = () => {
+            window.open(projects.space.sourceCode, "_blank")
+        }
+        spaceInfoIcon.view.onclick = () => {
+            alert("Space Info")
+        }
+
+        spaceClickableContainer.add(spaceSourceCodeIcon)
+        spaceClickableContainer.add(spaceInfoIcon)
+        
+        spaceCard.add(spaceClickableContainer)
+
+
+
+        cardHolder1.add(rbimgCard)
+        cardHolder1.add(odinsEyeCard)
+        cardHolder1.add(digiprocCard)
+        cardHolder1.add(spaceCard)
+        projectsSection.sectionContent.add(cardHolder1)
 
         const blogSection = new MainSection(this.view, "Blog")
+
+        const smallCardHolder = new HorizontalViewer(blogSection.view)
+
+        const dijkstra = new Card(smallCardHolder.view, {
+            title: "Dijstra's Algorithm",
+            className: 'small-card'
+        })
+
+        const dijDes = document.createElement('p')
+        dijDes.textContent = "Walkthrough of Dijkstra's Algorithm, Graphs, and Heaps, how to make it O(nlgn), and working code in Python"
+
+        dijkstra.add(dijDes)
+
+
+        const dijClickableContainerDiv = document.createElement('div')
+        dijClickableContainerDiv.className = 'project-clickable-container'
+        const dijClickableContainer = new ElementWrapper(dijkstra.view, dijClickableContainerDiv)
+
+        const dijIcon = new IconWithBg(dijClickableContainer.view, 'newspaper', {iconClassName: 'clickable-icon-color'})
+        dijIcon.view.classList.add('clickable-icon')
+
+        dijIcon.view.onclick = () => {
+            window.open(projects.space.sourceCode, "_blank")
+        }
+
+
+        dijClickableContainer.add(dijIcon)
+        dijkstra.addContent(dijClickableContainer)
+
+        smallCardHolder.add(dijkstra)
+        blogSection.add(smallCardHolder)
 
         const contactSection = new MainSection(this.view, "Contact")
 

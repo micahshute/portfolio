@@ -2,7 +2,9 @@ class LeftHeader extends HTMLManager{
 
     constructor(parent){
         super(parent, {})
-
+        const hamburger = new Icon(this.view, 'bars', {className: 'hamburger'})
+        hamburger.view.onclick = this.displaySidebarModal.bind(this)
+        this.add(hamburger)
         const name = document.createElement('p')
         name.className = 'ul-name'
         name.textContent = "Micah Shute"
@@ -16,6 +18,11 @@ class LeftHeader extends HTMLManager{
         const i = new Icon(this.view, 'code')
         i.view.classList.add('ul-symbol')
         this.add(i)
+    }
+
+
+    displaySidebarModal(){
+        alert("display modal")
     }
 
 

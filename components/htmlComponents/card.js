@@ -47,8 +47,14 @@ class Card extends HTMLManager{
                 DisplayManager.parseStyle(img, opts.withImage)
             }
             img.style.verticalAlign = "text-bottom"
-            subtitleContainer.appendChild(h2)
-            subtitleContainer.appendChild(img)
+            if(opts.withImage.imgFirst){
+                subtitleContainer.appendChild(img)
+                subtitleContainer.appendChild(h2)
+            }else{
+                subtitleContainer.appendChild(h2)
+                subtitleContainer.appendChild(img)
+            }
+            
             this.add(subtitleContainer)
         }else{
             this.add(h2)
