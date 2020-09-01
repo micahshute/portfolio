@@ -4,6 +4,9 @@ class BlogCard extends Card{
         super(parent, {title, className: "small-card"})
         const cardDescription = document.createElement('p')
         cardDescription.textContent = description
+        cardDescription.style.fontFamily = "Bad"
+        cardDescription.style.fontWeight = 600
+        cardDescription.style.fontSize = "0.8em"
         this.add(cardDescription)
         const clickableContainerDiv = document.createElement('div')
         clickableContainerDiv.className = 'project-clickable-container'

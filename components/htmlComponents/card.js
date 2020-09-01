@@ -20,7 +20,7 @@ class Card extends HTMLManager{
 
     addTitle(titleText, opts){
         const h1 = document.createElement('h1')
-        h1.className = 'card-title {{className}}'
+        h1.className = 'card-title bold {{className}}'
         h1.id = '{{id}}'
         h1.textContent = titleText
         DisplayManager.processElement(h1, opts)

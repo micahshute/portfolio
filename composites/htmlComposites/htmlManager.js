@@ -8,11 +8,11 @@ class HTMLManager extends HTMLComponent{
     render(){ 
         super.render()
         for(let child of this.children){
-            try{
+            // try{
             child.render()
-            }catch(e){
-                debugger
-            }
+            // }catch(e){
+            //     debugger
+            // }
         }
     }
      
@@ -24,18 +24,27 @@ class HTMLManager extends HTMLComponent{
 
     add(component){
         if(component instanceof Element){
-            const parent = this
-            const componentWrapper = {
-                parent,
-                render: () => {
-                    parent.view.appendChild(component)
-                }
-            }
+            // const parent = this
+            // const componentWrapper = {
+            //     parent,
+            //     render: () => {
+            //         parent.view.appendChild(component)
+            //     }
+            // }
+            const componentWrapper = new ElementWrapper(this.view, component)
             this.children.push(componentWrapper)
+            // componentWrapper.parent = this
         }else{
             this.children.push(component)
-            component.parent = this
+            // component.parent = this
         }
+    }
+
+    removeFromDom(){
+        for(let child of this.children){
+            child.removeFromDom()
+        }
+        this.children = []
     }
 
     remove(component){

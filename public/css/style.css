@@ -5,6 +5,12 @@
     font-weight: bolder;
 }
 
+
+@font-face {
+    font-family: 'Bad';
+    src: url('../assets/fonts/BadScript-Regular.ttf') format('truetype');
+}
+
 @font-face{
     font-family: "Iceland";
     src: url('../assets/fonts/Iceland-Regular.ttf');

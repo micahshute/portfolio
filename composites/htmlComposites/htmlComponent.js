@@ -62,9 +62,15 @@ class HTMLComponent extends Component{
 
     }
 
+    removeFromDom(){
+        this.view.remove()
+    }
+
     async render(){
         if(this.view){
+            // try{
             this.context.appendChild(this.view)
+            // }catch(e){debugger}
         }
         this.declareBindingsAndEventListeners()
         this.establishEventListeners()

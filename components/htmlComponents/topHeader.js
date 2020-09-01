@@ -4,12 +4,16 @@ class TopHeader extends HTMLComponent{
         super(parent, {})
     }
 
+    changeQuote(newQuote){
+        
+    }
+
     addQuote(){
 
     }
 
     removeQuote(){
-        z
+        
     }
 
     createView(){

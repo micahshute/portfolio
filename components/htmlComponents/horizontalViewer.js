@@ -87,7 +87,6 @@ class HorizontalViewer extends HTMLManager{
         }else{
             this.showLeftButton()
         }
-        console.log(np)
     }
 
     get firstElementXLocation(){
