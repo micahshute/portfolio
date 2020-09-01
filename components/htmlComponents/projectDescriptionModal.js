@@ -13,7 +13,6 @@ class ProjectDescriptionModal extends Modal{
         card.style.shadow = "none"
         card.style.justifyContent = "space-between"
         card.style.overflowY = "scroll"
-        
         super(card)
     }
 

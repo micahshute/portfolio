@@ -1,14 +1,14 @@
 class MainSection extends HTMLManager{
 
-    constructor(parent, title){
-        super(parent, {})
+    constructor(title){
+        super({})
         const hiddenAnchor = document.createElement('a')
         hiddenAnchor.id = title.toLowerCase()
         hiddenAnchor.className = "anchor"
         hiddenAnchor.style.display = "hidden"
         
-        const sectionTitle = new SectionTitle(this.view, title)
-        this.sectionContent = new MainSectionContent(this.view)
+        const sectionTitle = new SectionTitle(title)
+        this.sectionContent = new MainSectionContent()
 
         this.add(hiddenAnchor)
         this.add(sectionTitle)

@@ -1,7 +1,8 @@
 class GridContainer extends HTMLManager{
 
-    constructor(gridContainer, gridArea){
-        super(gridContainer, { gridArea, style: {gridArea}})
+    constructor(gridArea){
+        //TODO: WTF IS BELOW 
+        super({ gridArea, style: {gridArea}})
     }
 
     createView(){

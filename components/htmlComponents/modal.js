@@ -1,7 +1,8 @@
 class Modal extends HTMLManager{
 
     constructor(modalComponent, args = {}){
-        super(document.body, args)//document.querySelector('.portfolio-page'), args)
+        super(args)
+        this.parent = document.body
         if(modalComponent instanceof Element){
             modalComponent.style.zIndex = 100
         }else{

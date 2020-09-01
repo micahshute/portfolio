@@ -1,7 +1,7 @@
 class TopHeader extends HTMLComponent{
 
-    constructor(parent, quote){
-        super(parent, {})
+    constructor(quote){
+        super({})
     }
 
     changeQuote(newQuote){

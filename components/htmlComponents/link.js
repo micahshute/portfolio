@@ -1,8 +1,18 @@
 class Link extends HTMLComponent{
 
-    constructor(parent, viewArgs){
-        super(parent, viewArgs)
-        this.context.onclick = viewArgs.onClick
+    static newWithParent(parent, args){
+        return new this(args, parent)
+    }
+
+    constructor(viewArgs, parent=null){
+        super(viewArgs)
+        if(parent){
+            parent.add(this)
+            this.parent.onclick = viewArgs.onClick    
+        }else{
+            this.view.onclick = viewArgs.onClick
+        }
+        
     }
 
     createView(){

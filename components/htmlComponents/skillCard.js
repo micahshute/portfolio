@@ -1,6 +1,6 @@
 class SkillCard extends Card{
 
-    constructor(parent, title, skills, opts={}){
+    constructor(title, skills, opts={}){
         let sizeClass = ""
         if(opts.className){
             if(opts.className.includes("small-font")){
@@ -10,7 +10,7 @@ class SkillCard extends Card{
             }
         }
         
-        super(parent, {title, className: 'bold', ...opts, titleOpts: {className: `bold margin-bottom-md ${sizeClass}`}})
+        super({title, className: 'bold', ...opts, titleOpts: {className: `bold margin-bottom-md ${sizeClass}`}})
 
         const skillRow = document.createElement('div')
         skillRow.style.display = "flex"

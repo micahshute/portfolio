@@ -1,7 +1,7 @@
 class HorizontalViewer extends HTMLManager{
 
-    constructor(parent, args = {}){
-        super(parent, args)
+    constructor(args = {}){
+        super(args)
         const rbutton = document.createElement('button')
         const lbutton = document.createElement('button')
         const ri = document.createElement('i')
@@ -12,8 +12,8 @@ class HorizontalViewer extends HTMLManager{
         rbutton.appendChild(ri)
         lbutton.appendChild(li)
 
-        this.scrollRightButton = new ElementWrapper(this.view, rbutton)
-        this.scrollLeftButton = new ElementWrapper(this.view, lbutton)
+        this.scrollRightButton = new ElementWrapper(rbutton)
+        this.scrollLeftButton = new ElementWrapper(lbutton)
 
         this.scrollLeftButton.view.className = 'horizontal-view-scroller'
         this.scrollRightButton.view.className = 'horizontal-view-scroller'
@@ -28,7 +28,6 @@ class HorizontalViewer extends HTMLManager{
         this.hideLeftButton()
 
         window.onresize = () => {
-            // debugger
             if(this.shouldShowRightButton){
                 this.showRightButton
             }
@@ -101,7 +100,7 @@ class HorizontalViewer extends HTMLManager{
         super.add(el)
         const spaceDiv = document.createElement('div')
         spaceDiv.className = 'flex-space-md'
-        const space = new ElementWrapper(this.view, spaceDiv)
+        const space = new ElementWrapper(spaceDiv)
         space.parent = this
         this.children.push(space)
     }

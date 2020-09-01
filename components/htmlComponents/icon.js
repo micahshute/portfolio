@@ -1,7 +1,7 @@
 class Icon extends HTMLComponent{
 
-    constructor(parent, icon, opts={}){
-        super(parent, {icon, ...opts})
+    constructor(icon, opts={}){
+        super({icon, ...opts})
     }
 
     createView(){

@@ -1,7 +1,7 @@
 class SectionTitle extends HTMLManager{
 
-    constructor(parent, text){
-        super(parent, {})
+    constructor(text){
+        super({})
         const h1 = document.createElement('h1')
         h1.className = `main-header`
         h1.textContent = `${text}`

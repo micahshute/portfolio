@@ -1,7 +1,7 @@
 class ElementWrapper extends HTMLManager{
 
-    constructor(parent,element){
-        super(parent, {})
+    constructor(element){
+        super({})
         this.view = element
 
     }

@@ -2,28 +2,40 @@ class HTMLComponent extends Component{
 
 
     static getView(args){
-        const el = new this(document.createElement('div'), args)
+        const el = this.createInside(document.createElement('div'), args)
         el.render()
         return el.view
     }
 
-    constructor(ctx, viewArgs=null){
+    static createInside(parent, args={}){
+        return this.newWithParent(parent, args)
+    }
+
+    static newWithParent(parent, args={}){
+        const el = new this(args)
+        if(parent instanceof Element){
+            const p = new ElementWrapper(parent)
+            p.add(el)
+            return el
+        }else{
+            parent.add(el)
+            return el;
+        }
+    }
+
+    constructor(viewArgs=null){
         super()
         this.view = this.createView()
         
         if(viewArgs && Object.keys(viewArgs).length > 0 && this.view){
             DisplayManager.processElement(this.view, viewArgs)
-            // if(this.view.href){
-            //     this.view.href = DisplayManager.parse(unescape(this.view.href), viewArgs)
-            // }
         }
-        this.context = ctx
+
         this.activeEventListeners = {}
         this.eventListeners = {}
     }
 
     createView(){
-        // return "<p>Hello World, I am {{firstName}} {{lastName}}</>"
         const p = document.createElement('p')
         p.textContent = "Hello World, I am {{firstName}} {{lastName}}"
         return p
@@ -34,11 +46,15 @@ class HTMLComponent extends Component{
         for(let element in this.activeEventListeners){
             element.removeEventListener(this.activeEventListeners[element].type, this.activeEventListeners[element].boundFunction)
         }
-        this.context.innerHTML = ''
+        this.view.remove()
     }
 
     async beforeDerender(){
 
+    }
+
+    set onclick(fn){
+        this.view.onclick = fn
     }
 
     declareBindingsAndEventListeners(){
@@ -62,15 +78,17 @@ class HTMLComponent extends Component{
 
     }
 
-    removeFromDom(){
-        this.view.remove()
-    }
-
     async render(){
         if(this.view){
-            // try{
-            this.context.appendChild(this.view)
-            // }catch(e){debugger}
+            try{
+                this.parent.view.appendChild(this.view)
+            }catch(e){
+                try{
+                    this.parent.appendChild(this.view)
+                }catch(e2){
+                    console.log(`You tried to render ${this} without a valid parent: ${this.parent}`)
+                }
+            }
         }
         this.declareBindingsAndEventListeners()
         this.establishEventListeners()

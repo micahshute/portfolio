@@ -1,16 +1,16 @@
 class App extends HTMLManager{
 
-    constructor(ctx, viewArgs){
-        super(ctx, viewArgs)
-        const navbarGrid = new GridContainer(this.view, "sidenav")
-        const leftHeaderGrid = new GridContainer(this.view, 'header-left')
-        const footerGrid = new GridContainer(this.view, 'footer')
-        const mainGrid = new GridContainer(this.view, 'main')
+    constructor(viewArgs){
+        super(viewArgs)
+        const navbarGrid = new GridContainer("sidenav")
+        const leftHeaderGrid = new GridContainer('header-left')
+        const footerGrid = new GridContainer('footer')
+        const mainGrid = new GridContainer('main')
 
-        navbarGrid.add(new Navbar(navbarGrid.view))
-        leftHeaderGrid.add(new LeftHeader(leftHeaderGrid.view))
-        footerGrid.add(new Footer(footerGrid.view))
-        mainGrid.add(new Main(mainGrid.view))
+        navbarGrid.add(new Navbar())
+        leftHeaderGrid.add(new LeftHeader())
+        footerGrid.add(new Footer())
+        mainGrid.add(new Main())
 
         this.add(navbarGrid)
         this.add(leftHeaderGrid)

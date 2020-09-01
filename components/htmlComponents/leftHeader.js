@@ -1,8 +1,8 @@
 class LeftHeader extends HTMLManager{
 
-    constructor(parent){
-        super(parent, {})
-        const hamburger = new Icon(this.view, 'bars', {className: 'hamburger'})
+    constructor(){
+        super({})
+        const hamburger = new Icon('bars', {className: 'hamburger'})
         hamburger.view.onclick = this.displaySidebarModal.bind(this)
         this.add(hamburger)
         const name = document.createElement('p')
@@ -24,7 +24,7 @@ class LeftHeader extends HTMLManager{
     displaySidebarModal(){
         const navdiv = document.createElement('div')
         navdiv.className = "sidenav-modal"
-        const navbar = new Navbar(navdiv)
+        const navbar = Navbar.newWithParent(navdiv)
         navbar.view.classList.remove('hide-on-small')
         navbar.view.classList.remove('shadow')
         navbar.render()

@@ -11,7 +11,7 @@ const TIMEOUTS = []
  function renderHTMLSite(){
     const root = document.querySelector("#root")
     root.innerHTML = ''
-    const app = new App(root)
+    const app = App.createInside(root)
     app.render()
  }
 

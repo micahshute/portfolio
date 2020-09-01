@@ -1,7 +1,7 @@
 class Footer extends HTMLManager{
 
-    constructor(parent){
-        super(parent, {})
+    constructor(){
+        super({})
     }
 
     createView(){

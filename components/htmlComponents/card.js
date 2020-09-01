@@ -1,8 +1,8 @@
 class Card extends HTMLManager{
 
 
-    constructor(parent, args){
-        super(parent, args)
+    constructor(args){
+        super(args)
         if(args.title){
             this.addTitle(args.title, args.titleOpts || {})
         }
@@ -61,12 +61,6 @@ class Card extends HTMLManager{
         }
         
     }
-
-    addContent(contentElement){
-        this.add(contentElement)
-    }
-
-    
 
 
 }

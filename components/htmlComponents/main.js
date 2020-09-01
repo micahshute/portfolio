@@ -1,17 +1,17 @@
 class Main extends HTMLManager{
 
-    constructor(parent){
-        super(parent, {})
+    constructor(){
+        super({})
         this.view.onscroll = () => this.view.scrollLeft = 0
 
 
         // MARK: QUOTES
-        const topHeader = new TopHeader(this.view)
+        const topHeader = new TopHeader()
 
 
         //MARK: ABOUT
 
-        const aboutSection = new MainSection(this.view, "About")
+        const aboutSection = new MainSection("About")
         const aboutText = document.createElement('p')
         aboutText.innerHTML = about
         aboutText.className = 'about-me'
@@ -23,8 +23,8 @@ class Main extends HTMLManager{
 
         //MARK: EDUCATION
 
-        const educationSection = new MainSection(this.view, "Education")
-        const udCard = new Card(educationSection.view, {
+        const educationSection = new MainSection("Education")
+        const udCard = new Card({
             title: "M.S. Computer and Electrical Engineering",
             subtitle: "University of Delaware",
             subtitleOpts: {
@@ -72,12 +72,12 @@ class Main extends HTMLManager{
             udCourseList.appendChild(course)
         }
 
-        udCard.addContent(udGPASummary)
-        udCard.addContent(udpkp)
-        udCard.addContent(udCourseListHeader)
-        udCard.addContent(udCourseList)
+        udCard.add(udGPASummary)
+        udCard.add(udpkp)
+        udCard.add(udCourseListHeader)
+        udCard.add(udCourseList)
 
-        const flatironCard = new Card(educationSection.view, {
+        const flatironCard = new Card({
             title: "Full Stack Web Development",
             subtitle: "Flatiron School",
             subtitleOpts: {
@@ -119,11 +119,11 @@ class Main extends HTMLManager{
             fiCourseList.appendChild(course)
         }
 
-        flatironCard.addContent(fiCourseListHeader)
-        flatironCard.addContent(fiCourseList)
+        flatironCard.add(fiCourseListHeader)
+        flatironCard.add(fiCourseList)
 
 
-        const usnaCard = new Card(educationSection.view, {
+        const usnaCard = new Card({
             title: "B.S. Control Systems Engineering",
             subtitle: "United States Naval Academy",
             subtitleOpts: {
@@ -145,7 +145,7 @@ class Main extends HTMLManager{
         usnaSS.className = 'course-card-header'
         usnaSS.textContent = "Commissioned as a Nuclear Submarine Officer"
         usnaSS.style.margin = 0
-        usnaCard.addContent(usnaSS)
+        usnaCard.add(usnaSS)
 
         educationSection.sectionContent.add(udCard)
         educationSection.sectionContent.add(flatironCard)
@@ -156,15 +156,13 @@ class Main extends HTMLManager{
 
         //MARK: SKILLS 
 
-        const skillsSection = new MainSection(this.view, "Skillset")
+        const skillsSection = new MainSection("Skillset")
 
         const languagesCard = new SkillCard(
-            skillsSection.view, 
             "Languages", 
             languages
         )
         const frameworksCard = new SkillCard(
-            skillsSection.view, 
             "Libraries / Frameworks", 
             frameworks,
             {
@@ -173,13 +171,11 @@ class Main extends HTMLManager{
         )
         
         const otherTechnologiesCard = new SkillCard(
-            skillsSection.view,
             "Other Technologies",
             technologies
         )
 
         const certificationsCard = new SkillCard(
-            skillsSection.view,
             "Certifications and Honors",
             certifications,
             {
@@ -197,11 +193,11 @@ class Main extends HTMLManager{
 
         //MARK: PROJECTS
 
-        const projectsSection = new MainSection(this.view, "Projects")
+        const projectsSection = new MainSection("Projects")
 
-        const cardHolder1 = new HorizontalViewer(projectsSection.view)
+        const cardHolder1 = new HorizontalViewer()
 
-        const rbimgCard = new Card(cardHolder1.view, {
+        const rbimgCard = new Card({
             title: "Rbimg",
             subtitle: "Ruby Gem",
             className: "small-card",
@@ -227,28 +223,28 @@ class Main extends HTMLManager{
         clickableContainer.className = 'project-clickable-container'
         
 
-        const sourceCodeIcon = new IconWithBg(clickableContainer, "code", {iconClassName: 'clickable-icon-color'})
+        const sourceCodeIcon = new IconWithBg("code", {iconClassName: 'clickable-icon-color'})
         sourceCodeIcon.view.classList.add("clickable-icon")
         sourceCodeIcon.view.onclick = () => {
             window.open(projects.rbimg.sourceCode, "_blank")
         }
 
-        const infoIcon = new IconWithBg(clickableContainer, 'info', {iconClassName: 'clickable-icon-color'})
+        const infoIcon = new IconWithBg('info', {iconClassName: 'clickable-icon-color'})
         infoIcon.view.classList.add('clickable-icon')
         infoIcon.view.onclick = () => {
             const modal = new ProjectDescriptionModal("Rbimg", projects.rbimg.description)
             modal.render()
         }
 
-        const clickableContainerManager = new ElementWrapper(rbimgCard.view, clickableContainer)
+        const clickableContainerManager = new ElementWrapper(clickableContainer)
         clickableContainerManager.add(sourceCodeIcon)
         clickableContainerManager.add(infoIcon)
 
-        rbimgCard.addContent(rbimgShortDesc)
-        rbimgCard.addContent(clickableContainerManager)
+        rbimgCard.add(rbimgShortDesc)
+        rbimgCard.add(clickableContainerManager)
 
 
-        const odinsEyeCard = new Card(cardHolder1.view, {
+        const odinsEyeCard = new Card({
             title: "Odins's Eye",
             subtitle: "Fullstack Web App",
             className: "small-card",
@@ -259,7 +255,7 @@ class Main extends HTMLManager{
             }
         })
 
-        const imgContainer = new ElementWrapper(odinsEyeCard.view, document.createElement('div'))
+        const imgContainer = new ElementWrapper(document.createElement('div'))
         const railsImg = document.createElement('img')
         railsImg.src = '../../public/assets/images/rails.png'
         railsImg.width = 20
@@ -271,20 +267,20 @@ class Main extends HTMLManager{
         jsImg.height = 20
         imgContainer.add(railsImg)
         imgContainer.add(jsImg)
-        odinsEyeCard.addContent(imgContainer)
+        odinsEyeCard.add(imgContainer)
 
         const oeShortDesc = document.createElement('p')
         oeShortDesc.textContent = "Markdown blogging app with social media, messaging, and virtual classrooms"
         
-        odinsEyeCard.addContent(oeShortDesc)
+        odinsEyeCard.add(oeShortDesc)
 
         const oeClickableContainerDiv = document.createElement('div')
         oeClickableContainerDiv.className = 'project-clickable-container'
-        const oeClickableContainer = new ElementWrapper(odinsEyeCard.view, oeClickableContainerDiv)
+        const oeClickableContainer = new ElementWrapper(oeClickableContainerDiv)
 
-        const oeInfoIcon = new IconWithBg(oeClickableContainer.view, 'info', {iconClassName: 'clickable-icon-color'})
-        const oeSourceCodeIcon =  new IconWithBg(oeClickableContainer.view, 'code', {iconClassName: 'clickable-icon-color'})
-        const oeHostedSiteIcon = new IconWithBg(oeClickableContainer.view, 'laptop', {iconClassName: 'clickable-icon-color' })
+        const oeInfoIcon = new IconWithBg('info', {iconClassName: 'clickable-icon-color'})
+        const oeSourceCodeIcon =  new IconWithBg('code', {iconClassName: 'clickable-icon-color'})
+        const oeHostedSiteIcon = new IconWithBg('laptop', {iconClassName: 'clickable-icon-color' })
         
         oeInfoIcon.view.classList.add('clickable-icon')
         oeSourceCodeIcon.view.classList.add('clickable-icon')
@@ -311,7 +307,7 @@ class Main extends HTMLManager{
 
 
 
-        const digiprocCard = new Card(cardHolder1.view, {
+        const digiprocCard = new Card({
             title: "Digiproc",
             subtitle: "Ruby Gem",
             className: "small-card",
@@ -333,14 +329,14 @@ class Main extends HTMLManager{
         const digiprocShortDesc = document.createElement('p')
         digiprocShortDesc.textContent = "Digital Signal Processing gem which allows FFT calculation, filtering, encoding, etc."
 
-        digiprocCard.addContent(digiprocShortDesc)
+        digiprocCard.add(digiprocShortDesc)
 
         const dpClickableContainerDiv = document.createElement('div')
         dpClickableContainerDiv.className = 'project-clickable-container'
-        const dpClickableContainer = new ElementWrapper(digiprocCard.view, dpClickableContainerDiv)
+        const dpClickableContainer = new ElementWrapper(dpClickableContainerDiv)
 
-        const dpInfoIcon = new IconWithBg(dpClickableContainer.view, 'info', {iconClassName: 'clickable-icon-color'})
-        const dpSourceCodeIcon =  new IconWithBg(dpClickableContainer.view, 'code', {iconClassName: 'clickable-icon-color'})
+        const dpInfoIcon = new IconWithBg('info', {iconClassName: 'clickable-icon-color'})
+        const dpSourceCodeIcon =  new IconWithBg('code', {iconClassName: 'clickable-icon-color'})
         dpInfoIcon.view.classList.add('clickable-icon')
         dpSourceCodeIcon.view.classList.add('clickable-icon')
 
@@ -358,7 +354,7 @@ class Main extends HTMLManager{
         digiprocCard.add(dpClickableContainer)
 
 
-        const spaceCard = new Card(cardHolder1.view, {
+        const spaceCard = new Card({
             title: "JS Gravity Sim",
             subtitle: "JS Frontend App",
             className: "small-card",
@@ -380,14 +376,14 @@ class Main extends HTMLManager{
         const spaceShortDesc = document.createElement('p')
         spaceShortDesc.textContent = "Simple frontend app which can simulate gravitational interactions between large masses (Newtonian Calculations)"
 
-        spaceCard.addContent(spaceShortDesc)
+        spaceCard.add(spaceShortDesc)
 
         const spaceClickableContainerDiv = document.createElement('div')
         spaceClickableContainerDiv.className = 'project-clickable-container'
-        const spaceClickableContainer = new ElementWrapper(spaceCard.view, spaceClickableContainerDiv)
+        const spaceClickableContainer = new ElementWrapper(spaceClickableContainerDiv)
 
-        const spaceInfoIcon = new IconWithBg(spaceClickableContainer.view, 'info', {iconClassName: 'clickable-icon-color'})
-        const spaceSourceCodeIcon =  new IconWithBg(spaceClickableContainer.view, 'code', {iconClassName: 'clickable-icon-color'})
+        const spaceInfoIcon = new IconWithBg('info', {iconClassName: 'clickable-icon-color'})
+        const spaceSourceCodeIcon =  new IconWithBg('code', {iconClassName: 'clickable-icon-color'})
         spaceInfoIcon.view.classList.add('clickable-icon')
         spaceSourceCodeIcon.view.classList.add('clickable-icon')
 
@@ -410,17 +406,17 @@ class Main extends HTMLManager{
         cardHolder1.add(odinsEyeCard)
         cardHolder1.add(digiprocCard)
         cardHolder1.add(spaceCard)
-        projectsSection.sectionContent.add(cardHolder1)
+        projectsSection.add(cardHolder1)
 
-        const blogSection = new MainSection(this.view, "Blog")
+        const blogSection = new MainSection("Blog")
 
-        const smallCardHolder = new HorizontalViewer(blogSection.view)
+        const smallCardHolder = new HorizontalViewer()
 
-        const dijkstra = new BlogCard(smallCardHolder.view, blogs.dijkstra.title, blogs.dijkstra.description, blogs.dijkstra.link)
-        const pca = new BlogCard(smallCardHolder.view, blogs.pca.title, blogs.pca.description, blogs.pca.link)
-        const montyHall = new BlogCard(smallCardHolder.view, blogs.monty.title, blogs.monty.description, blogs.monty.link)
-        const bigo = new BlogCard(smallCardHolder.view, blogs.bigo.title, blogs.bigo.description, blogs.bigo.link)
-        const fft = new BlogCard(smallCardHolder.view, blogs.fft.title, blogs.fft.description, blogs.fft.link)
+        const dijkstra = new BlogCard(blogs.dijkstra.title, blogs.dijkstra.description, blogs.dijkstra.link)
+        const pca = new BlogCard(blogs.pca.title, blogs.pca.description, blogs.pca.link)
+        const montyHall = new BlogCard(blogs.monty.title, blogs.monty.description, blogs.monty.link)
+        const bigo = new BlogCard(blogs.bigo.title, blogs.bigo.description, blogs.bigo.link)
+        const fft = new BlogCard(blogs.fft.title, blogs.fft.description, blogs.fft.link)
 
 
 
@@ -435,14 +431,14 @@ class Main extends HTMLManager{
 
         //MARK: CONTACT
 
-        const contactSection = new MainSection(this.view, "Contact")
+        const contactSection = new MainSection("Contact")
 
 
 
 
         //MARK: BIO
 
-        const bioSection = new MainSection(this.view, "Bio")
+        const bioSection = new MainSection("Bio")
 
         // const resumeSection = new MainSection(this.view, "Resume")
 
