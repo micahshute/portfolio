@@ -1,4 +1,4 @@
-class Transporter{
+class SpriteTransporter{
 
 
     static sprite = null

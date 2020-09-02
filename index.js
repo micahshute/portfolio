@@ -1,4 +1,6 @@
 let APP 
+
+let Transporter = isSafari() ? SafariTransporter : SpriteTransporter
  
  document.addEventListener("DOMContentLoaded", () => {
     const root = document.querySelector('#root')
@@ -55,4 +57,18 @@ function binarySearch(arr, comparator){
       mid++
    }
    return -1 * mid
+}
+
+
+function isSafari(){
+   let ua = navigator.userAgent.toLowerCase(); 
+   if (ua.indexOf('safari') != -1) { 
+      if (ua.indexOf('chrome') > -1) {
+         return false
+      } else {
+         return true
+      }
+   }else{
+      return false
+   }
 }
