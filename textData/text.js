@@ -197,7 +197,7 @@ const QUOTES = [
     },
     {
         
-        quote: "Education never ends[...]. It is a series of lessons, with the greatest for the last.",
+        quote: "Education never ends. It is a series of lessons, with the greatest for the last.",
         author: "Sherlock Holmes"
     },
     {

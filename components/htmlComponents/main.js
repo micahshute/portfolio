@@ -6,8 +6,8 @@ class Main extends HTMLManager{
 
 
         // MARK: QUOTES
-        const topHeader = new TopHeader()
-
+        const topHeader = new TopHeader(QUOTES)
+        
 
         //MARK: ABOUT
 
@@ -433,9 +433,36 @@ class Main extends HTMLManager{
 
         const contactSection = new MainSection("Contact")
 
+        const buttonLinkContainerDiv = document.createElement('div')
+        buttonLinkContainerDiv.style.display = 'flex'
+        buttonLinkContainerDiv.style.justifyContent = 'flex-start'
+        buttonLinkContainerDiv.style.alignItems = 'center'
+        buttonLinkContainerDiv.style.padding = '20px';
+        const buttonLinkContainer = new ElementWrapper(buttonLinkContainerDiv)
+
+        const emailIcon = new IconWithBg('envelope', {iconClassName: 'clickable-icon-color'})
+        const emailLink = new Link({
+            id: "mailto-link", 
+            text: "micah.shute@gmail.com", 
+            url: '#',
+            className: 'dark-text bold-on-hover text-align-bottom',
+            onClick: (e) => {
+                e.preventDefault()
+                window.open('mailto:micah.shute@gmail.com', "_blank")
+            }
+        }
+        )
+
+        emailIcon.view.classList.add('clickable-icon')
+        emailIcon.view.onclick = () => {
+            window.open('mailto:micah.shute@gmail.com', "_blank")
+        }
+
+        buttonLinkContainer.add(emailIcon)
+        buttonLinkContainer.add(emailLink)
 
 
-
+        contactSection.add(buttonLinkContainer)
         //MARK: BIO
 
         const bioSection = new MainSection("Bio")

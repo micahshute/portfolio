@@ -1,10 +1,15 @@
 class DisplayManager{
 
     static parse(html, args){
-        if(!args || !html){
+        if(!html){
             return html
         }
         let parsed = html
+        if(!args){
+            const re = new RegExp(`{{\\s*.*\\s*}}`, 'g')
+            parsed = parsed.replace(re, '')
+            return parsed
+        }
         for(let arg in args){
             const re = new RegExp(`{{\\s*${arg}\\s*}}`, 'g')
             parsed = parsed.replace(re, args[arg])
@@ -18,12 +23,15 @@ class DisplayManager{
         domElement.textContent = DisplayManager.parse(domElement.textContent, args)
         domElement.className = DisplayManager.parse(domElement.className, args)
         domElement.id = DisplayManager.parse(domElement.id, args)
+        if(domElement.href){
+            domElement.href = DisplayManager.parse(unescape(domElement.href), args)
+        }
         domElement.innerHTML = DisplayManager.parse(domElement.innerHTML, args)
         this.parseStyle(domElement, args)
     }
 
     static parseStyle(domElement, args){
-        if(!args.style){
+        if(!args || !args.style){
             return domElement
         }else{
             for(let styleKey in args.style){

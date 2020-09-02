@@ -33,6 +33,9 @@ class HTMLComponent extends Component{
 
         this.activeEventListeners = {}
         this.eventListeners = {}
+
+        this.intervals = []
+        this.timeouts = []
     }
 
     createView(){
@@ -44,7 +47,13 @@ class HTMLComponent extends Component{
     async derender(){
         await this.beforeDerender()
         for(let element in this.activeEventListeners){
-            element.removeEventListener(this.activeEventListeners[element].type, this.activeEventListeners[element].boundFunction)
+            this.activeEventListeners[element].target.removeEventListener(this.activeEventListeners[element].type, this.activeEventListeners[element].boundFunction)
+        }
+        for(let interval of this.intervals){
+            window.clearInterval(interval)
+        }
+        for(let timeout of this.timeouts){
+            window.clearTimeout(timeout)
         }
         this.view.remove()
     }
@@ -63,9 +72,10 @@ class HTMLComponent extends Component{
 
     establishEventListeners(){
         for(let element in this.eventListeners){
-            const boundFunction = this.eventListeners[element].function.bind(this)
-            element.addEventListener(this.eventListeners[element].type, this.eventListeners[element].function)
-            this.activeEventListeners[element] = {type: this.eventListeners[element].type, boundFunction}
+            const boundFunction = this.eventListeners[element].function//.bind(this)
+            const target = this.eventListeners[element].target
+            target.addEventListener(this.eventListeners[element].type, this.eventListeners[element].function)
+            this.activeEventListeners[element] = {type: this.eventListeners[element].type, boundFunction, target}
         }
         this.eventListeners = {}
     }
@@ -86,6 +96,8 @@ class HTMLComponent extends Component{
                 try{
                     this.parent.appendChild(this.view)
                 }catch(e2){
+                    console.log(this)
+                    console.log(this.parent)
                     console.log(`You tried to render ${this} without a valid parent: ${this.parent}`)
                 }
             }

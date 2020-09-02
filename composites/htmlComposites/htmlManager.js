@@ -33,9 +33,10 @@ class HTMLManager extends HTMLComponent{
         }
     }
 
-    removeFromDom(){
+    async derender(){
+        await super.derender()
         for(let child of this.children){
-            child.removeFromDom()
+            await child.derender()
         }
         this.children = []
     }
@@ -47,8 +48,8 @@ class HTMLManager extends HTMLComponent{
 
 
     reload(){
-        this.context.innerHTML = ''
-        render()
+        this.view.remove()
+        this.render()
     }
 
 }

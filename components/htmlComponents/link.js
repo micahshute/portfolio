@@ -17,7 +17,7 @@ class Link extends HTMLComponent{
 
     createView(){
         const a = document.createElement('a')
-        a.className = 'link'
+        a.className = 'link {{className}}'
         a.id = "{{id}}"
         a.textContent = "{{text}}" 
         a.href = "{{url}}"

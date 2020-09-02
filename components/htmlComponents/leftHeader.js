@@ -15,7 +15,7 @@ class LeftHeader extends HTMLManager{
         title.textContent = "Software Engineer"
         this.add(title)
 
-        const i = new Icon(this.view, 'code')
+        const i = new Icon('code')
         i.view.classList.add('ul-symbol')
         this.add(i)
     }

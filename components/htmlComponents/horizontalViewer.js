@@ -2,6 +2,10 @@ class HorizontalViewer extends HTMLManager{
 
     constructor(args = {}){
         super(args)
+
+        this.elSize = args.elementSize || 240
+        this.minGapSize = args.gapSize || 40
+        this.elementSize = this.elSize + this.minGapSize /2
         const rbutton = document.createElement('button')
         const lbutton = document.createElement('button')
         const ri = document.createElement('i')
@@ -27,25 +31,34 @@ class HorizontalViewer extends HTMLManager{
 
         this.hideLeftButton()
 
-        window.onresize = () => {
-            if(this.shouldShowRightButton){
-                this.showRightButton
-            }
-        }
+        // this._shouldResize = false
+        // this.timeSinceResize = 0
+        
 
     }
 
-    finalBindingsAndEventListeners(){
-        if(!this.shouldShowRightButton()){
-            this.hideRightButton()
-        }
-        this.setRightButtonTranslation()
-    }
+    // get shouldResize(){
+    //     return this._shouldResize
+    // }
 
-    setRightButtonTranslation(){
-        return null
-        // this.scrollRightButton.view.style.transform= `translateX(${this.viewSize() - 50}px)`
-    }
+    // set shouldResize(sr){
+    //     this._shouldResize = sr
+    //     if(sr){
+
+    //     }
+    // }
+
+    // finalBindingsAndEventListeners(){
+    //     if(!this.shouldShowRightButton()){
+    //         this.hideRightButton()
+    //     }
+    //     this.setRightButtonTranslation()
+    // }
+
+    // setRightButtonTranslation(){
+    //     return null
+    //     // this.scrollRightButton.view.style.transform= `translateX(${this.viewSize() - 50}px)`
+    // }
 
 
     translateRight(){
@@ -53,11 +66,11 @@ class HorizontalViewer extends HTMLManager{
         this.translateTo(this.currentPosition)
         this.showLeftButton()
         window.setTimeout( () => {
-            if(this.lastElementXLocation < 0){
+            if(this.lastElementXLocation < this.elementSize){
                 this.translateLeft()
                 this.hideRightButton()
             }
-        }, 1000)
+        }, 700)
         
     }
 
@@ -69,6 +82,7 @@ class HorizontalViewer extends HTMLManager{
 
     translateLeft(){
         this.currentPosition += this.scrollDistance()
+        console.log(this.currentPosition)
         this.translateTo(this.currentPosition)
         this.showRightButton()
     }
@@ -78,10 +92,11 @@ class HorizontalViewer extends HTMLManager{
     }
 
     set currentPosition(np){
+        // console.log(np)
         this._currentPosition = np
-        if(np >= 0){
+        if(np >= -(this.elementSize) + 41){
             this.hideLeftButton()
-            this._current_position = 0
+            this._currentPosition = 0
             this.translateTo(0)
         }else{
             this.showLeftButton()
@@ -117,11 +132,33 @@ class HorizontalViewer extends HTMLManager{
     }
 
     scrollDistance(size=240){
-        return Math.max(this.cardsShown() * size, 240)
+        let offset = 0
+        if(this.currentPosition === 0){
+            offset += 0
+        }
+        return Math.max(this.cardsShown() * size - offset, this.elementSize - offset)
     }
 
-    cardsShown(size=240){
-        return Math.floor((this.viewSize() - 65) / size)
+    cardsShown(size=null){
+        const elSize = size || this.elementSize
+        let offset = 0
+        if(this.rightButtonRendered()){
+            offset += 40
+        }
+        if(this.leftButtonRendered()){
+            offset += 40
+        }
+        console.log(offset)
+        console.log(Math.floor((this.viewSize() - offset) / this.elementSize))
+        return Math.floor((this.viewSize() - offset) / this.elementSize)
+    }
+
+    rightButtonRendered(){
+        return this.scrollRightButton.view.display !== "none"
+    }
+
+    leftButtonRendered(){
+        return this.scrollLeftButton.view.display !== "none"
     }
 
     shouldShowLeftButton(){
@@ -129,7 +166,7 @@ class HorizontalViewer extends HTMLManager{
     }
 
     shouldShowRightButton(){
-        console.log(this.cardsShown())
+        // console.log(this.cardsShown())
         if(this.cardsShown() >= this.children.length / 2 - 1){
             return false
         }
@@ -154,8 +191,31 @@ class HorizontalViewer extends HTMLManager{
 
     showRightButton(){
         this.view.style.marginLeft = "0px"
-        this.setRightButtonTranslation()
         this.scrollRightButton.view.style.display = "inline-block"
+    }
+
+    handleResize(){
+        this.reload()
+        this.timeSinceResize = 0
+        this._shouldResize = false
+    }
+
+    declareBindingsAndEventListeners(){
+        const onResize = () => {
+            // this.resizing = true
+            this.view.style.maxWidth = "100%"
+            this.currentPosition = 1
+            if(this.shouldShowRightButton()){
+                this.showRightButton()
+            }else{
+                this.hideRightButton()
+            }
+            // console.log(this.viewSize())
+            // this.reload()
+        }
+
+        // window.onresize = onResize
+        this.eventListeners[window] = {type: 'resize', function: onResize, target: window}
     }
 
 

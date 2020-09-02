@@ -1,7 +1,7 @@
 class Transporter{
 
 
-    static sprite;
+    static sprite = null
 
     static getTransportCallback(x,y, doorSideX = "none", doorSideY = "none"){
         return () => this.transportSprite(x,y, doorSideX, doorSideY)
