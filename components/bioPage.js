@@ -6,7 +6,19 @@ class BioPage extends Picture{
             "public/assets/images/profile.png",
             canvas,
             {x: 10, y: "25%"},
-            {x: 220, y: 350}
+            {x: 200, y: 338}
+        ))
+        // this.add(new Image(
+        //     'public/assets/images/kamweb.jpg',
+        //     canvas,
+        //     {x: 10, y: "25%"},
+        //     {x: 225, y: 150}
+        // ))
+        this.add(new Image(
+            'public/assets/images/kamweb.jpg',
+            canvas,
+            {x: 250, y: canvas.height * 0.25 + 338 + canvas.height * 0.01},
+            {x: 440, y: 300}
         ))
         this.add(new CanvasTextManager(
             bio, 
@@ -15,7 +27,7 @@ class BioPage extends Picture{
             {
                 textAlign: 'start',
                 font: 'Raj',
-                fontSize: "20px", 
+                fontSize: "15px", 
                 fontWeight: 300,
                 fontColor: "#CCCCCC"
             }
@@ -31,6 +43,7 @@ class BioPage extends Picture{
             () => this.parent.sprite,
             {}
         ))
+        
     }
 
 

@@ -3,28 +3,6 @@ class MoveableSprite extends Sprite{
     constructor(sprite, user, location, canvas, size){
         super(sprite, user, location, canvas, size)
         this.arrowsPressed = []
-        // this.sprite = new Sprite('public/assets/sprites/Male/Male\ 01-2.png', null, {x: 100, y: 100}, {
-        //     top: 0, bottom: this.canvas.height, left: 0, right: this.canvas.width
-        // }) 
-
-        // var hidden, visibilityChange; 
-        // if (typeof document.hidden !== "undefined") { // Opera 12.10 and Firefox 18 and later support 
-        //     hidden = "hidden";
-        //     visibilityChange = "visibilitychange";
-        // } else if (typeof document.msHidden !== "undefined") {
-        //     hidden = "msHidden";
-        //     visibilityChange = "msvisibilitychange";
-        // } else if (typeof document.webkitHidden !== "undefined") {
-        //     hidden = "webkitHidden";
-        //     visibilityChange = "webkitvisibilitychange";
-        // }
-
-        // document.addEventListener(visibilityChange, () => {
-        //     if(document[hidden]){
-        //         this.arrowsPressed = []
-        //         this._activeState = Sprite.Image.states.STANDING_DOWN
-        //     }
-        // }, false)
 
         window.addEventListener('blur', () => {
             this.arrowsPressed = []
@@ -38,7 +16,6 @@ class MoveableSprite extends Sprite{
         this.boundKeyDownEL = this.keyDownEL.bind(this)
         
         this.makeControllble()
-        // setInterval(this.makeUncontrollable.bind(this), 10000)
     }
 
     makeUncollidable(){

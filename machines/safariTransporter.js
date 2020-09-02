@@ -12,6 +12,10 @@ const SafariTransporter = function (){
         static set sprite(s){
             sprite = s
         }
+
+        static get sprite(){
+            return sprite
+        }
     
         static transportSprite(x,y, doorSideX = "none", doorSideY = "none"){
             let xSpriteCorrection

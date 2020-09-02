@@ -11,7 +11,13 @@ class CanvasApp extends Picture{
         
         const initSequence = this.getInitSequence()
         this.add(new WithDelay(initSequence,1))
-        this.sprite = new MoveableSprite('public/assets/sprites/Male/Male\ 01-2.png', null, {x: "15%", y: 100}, this.canvas)
+        this.sprite = new MoveableSprite(
+            'public/assets/sprites/Male/Male\ 01-2.png', 
+            null, 
+            {x: "15%", y: 100}, 
+            this.canvas, 
+            {x: this.canvas.width * 0.07, y: this.canvas.width * 0.07}
+        )
         Transporter.sprite = this.sprite
         window.onresize = this.canvasSetup.bind(this)
         this.defineBindingsAndEventListeners()
@@ -76,13 +82,22 @@ class CanvasApp extends Picture{
                     Transporter.transportSprite(10,10,"right", "center")
                     this.add(this.sprite)
                 }),
-            new Collidable(new Door(this.canvas, {x: "9%", y: "70%"}, doorWidth, doorHeight, {label: "Site Portal"}),
-                () => {
+            // new Collidable(new Door(this.canvas, {x: "9%", y: "70%"}, doorWidth, doorHeight, {label: "Site Portal"}),
+            //     () => {
+            //         window.cancelAnimationFrame(this.animationId)
+            //         this.children = []
+            //         this.sprite = null
+            //         this.container.innerHTML = ''
+            //         renderHTMLSite()
+            //     })
+            new CanvasLink({x: "9%", y: "70%"}, "Site Portal", "", () => Transporter.sprite, {
+                callback: () => {
                     window.cancelAnimationFrame(this.animationId)
                     this.children = []
                     this.sprite = null
                     this.container.innerHTML = ''
                     renderHTMLSite()
+                    }
                 })
         ]
 

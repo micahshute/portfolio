@@ -1,9 +1,17 @@
 class CanvasLink extends Picture{
 
-    constructor(location, linkText, linkURL, spriteRef, {font="Raj", fontSize='20px', fontColor="#CCCCCC", textAlign='center'}){
+    constructor(location, linkText, linkURL, spriteRef, {
+        font="Raj", 
+        fontSize='20px', 
+        fontColor="#CCCCCC", 
+        textAlign='center',
+        callback=null
+    
+        }){
         super(document.querySelector('canvas'), location)
         this.linkText = linkText
         this.linkURL = linkURL
+        this.transportCallback = callback ? callback : () => window.open(this.linkURL, "_blank")
         this.add(
             new Circle(
                 this.canvas,
@@ -40,11 +48,10 @@ class CanvasLink extends Picture{
                         textAlign
                     }
                 ), () => {
-                    const newLocation = {x: spriteRef().location.x, y: this.y + Number.parseInt(fontSize) * 2 + 5}
+                    const newLocation = {x: Transporter.sprite.location.x, y: this.y + Number.parseInt(fontSize) * 2 + 5}
                     Transporter.transportSprite(newLocation.x, newLocation.y)
                     const timeInterval = 1500
-                    const transportCallback = () => window.open(this.linkURL, "_blank")
-                    spriteRef().transportWithAnimation(newLocation, timeInterval, transportCallback)
+                    spriteRef().transportWithAnimation(newLocation, timeInterval, this.transportCallback)
                 }
         ))
     }

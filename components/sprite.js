@@ -184,7 +184,7 @@ class Sprite extends Graphic{
             ], 10, {x: 0, y: 0}),
             new this.animationStrategy([
                 Sprite.Image.StandDown
-            ], 4, {x: 0, y: -7 * speed})
+            ], 4, {x: 0, y: -10 * speed})
         ]
     }
 
