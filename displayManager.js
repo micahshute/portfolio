@@ -23,8 +23,9 @@ class DisplayManager{
         domElement.textContent = DisplayManager.parse(domElement.textContent, args)
         domElement.className = DisplayManager.parse(domElement.className, args)
         domElement.id = DisplayManager.parse(domElement.id, args)
-        if(domElement.href){
-            domElement.href = DisplayManager.parse(unescape(domElement.href), args)
+        if(domElement.tagName == "A"){
+            domElement.href = DisplayManager.parse(unescape(domElement.getAttribute('href')), args)
+            domElement.target = DisplayManager.parse(domElement.target, args)
         }
         domElement.innerHTML = DisplayManager.parse(domElement.innerHTML, args)
         this.parseStyle(domElement, args)

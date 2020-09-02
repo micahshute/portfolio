@@ -21,6 +21,7 @@ class Link extends HTMLComponent{
         a.id = "{{id}}"
         a.textContent = "{{text}}" 
         a.href = "{{url}}"
+        a.target = "{{target}}"
         return a
     }
 }

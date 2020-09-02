@@ -30,3 +30,29 @@ let APP
 //TODO: Add to Door class as default class vars
 const doorHeight = () => "20%"
 const doorWidth = () => 0.15 * document.querySelector('canvas').height
+
+
+function binarySearch(arr, comparator){
+   let max = arr.length - 1
+   let min = 0
+   let insertHigher
+   let mid
+   while(max >= min){
+      mid = Math.floor((max + min) / 2)
+      const comparison = comparator(arr[mid])
+      if(comparison === 0){
+         return mid
+      }else if(comparison > 0){
+         max = mid - 1
+         insertHigher = false
+      }else{
+         min = mid + 1
+         insertHigher = true
+      }
+   }
+   mid++
+   if(insertHigher){
+      mid++
+   }
+   return -1 * mid
+}

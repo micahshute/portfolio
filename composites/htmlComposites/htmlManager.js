@@ -5,15 +5,39 @@ class HTMLManager extends HTMLComponent{
     }
 
 
-    render(){ 
-        super.render()
-        for(let child of this.children){
-            // try{
-            child.render()
-            // }catch(e){
-            //     debugger
-            // }
+    // render(){ 
+    //     super.render()
+    //     for(let child of this.children){
+    //         // try{
+    //         child.render()
+    //         // }catch(e){
+    //         //     debugger
+    //         // }
+    //     }
+    // }
+
+    async render(){
+        if(this.view){
+            try{
+                this.parent.view.appendChild(this.view)
+            }catch(e){
+                try{
+                    this.parent.appendChild(this.view)
+                }catch(e2){
+                    console.log(this)
+                    console.log(this.parent)
+                    console.log(`You tried to render ${this} without a valid parent: ${this.parent}`)
+                }
+            }
         }
+        Promise.all(this.children.map(c => c.render())).then(async () => {
+            this.declareBindingsAndEventListeners()
+            this.establishEventListeners()
+            await this.fetchAndRenderData()
+            this.finalBindingsAndEventListeners()
+            this.establishEventListeners()
+        })
+        
     }
      
     add_and_render(component){

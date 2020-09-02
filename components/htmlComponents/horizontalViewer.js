@@ -31,34 +31,7 @@ class HorizontalViewer extends HTMLManager{
 
         this.hideLeftButton()
 
-        // this._shouldResize = false
-        // this.timeSinceResize = 0
-        
-
     }
-
-    // get shouldResize(){
-    //     return this._shouldResize
-    // }
-
-    // set shouldResize(sr){
-    //     this._shouldResize = sr
-    //     if(sr){
-
-    //     }
-    // }
-
-    // finalBindingsAndEventListeners(){
-    //     if(!this.shouldShowRightButton()){
-    //         this.hideRightButton()
-    //     }
-    //     this.setRightButtonTranslation()
-    // }
-
-    // setRightButtonTranslation(){
-    //     return null
-    //     // this.scrollRightButton.view.style.transform= `translateX(${this.viewSize() - 50}px)`
-    // }
 
 
     translateRight(){
@@ -82,7 +55,6 @@ class HorizontalViewer extends HTMLManager{
 
     translateLeft(){
         this.currentPosition += this.scrollDistance()
-        console.log(this.currentPosition)
         this.translateTo(this.currentPosition)
         this.showRightButton()
     }
@@ -148,8 +120,6 @@ class HorizontalViewer extends HTMLManager{
         if(this.leftButtonRendered()){
             offset += 40
         }
-        console.log(offset)
-        console.log(Math.floor((this.viewSize() - offset) / this.elementSize))
         return Math.floor((this.viewSize() - offset) / this.elementSize)
     }
 
@@ -201,6 +171,9 @@ class HorizontalViewer extends HTMLManager{
     }
 
     declareBindingsAndEventListeners(){
+        if(!this.shouldShowRightButton()){
+            this.hideRightButton()
+        }
         const onResize = () => {
             // this.resizing = true
             this.view.style.maxWidth = "100%"

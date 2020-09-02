@@ -31,6 +31,11 @@ class SkillCard extends Card{
                     img.height = 40
                     img.style.marginTop = "10px"
                     break
+                case "Github":
+                    img.width = 50
+                    img.height = 45
+                    img.style.marginTop = "5px"
+                    break
                 default:
                     img.width = 50
                     img.height = 50

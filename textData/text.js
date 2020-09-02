@@ -9,7 +9,7 @@ const introSequenceTxt = [
 
 const bio = `I graduated from the United States Naval Academy in 2012 with a B.S. in Control Systems Engineering and served as a Submarine Officer for 5 years. During that time, I ran a nuclear power plant, became qualified as Engineer of an S8G nuclear reactor, and drove the ship as the Officer of the Deck.
 
- In 2017 I resigned my comission to pursue software engineering. Since then, I have completed a M.S. in Computer and Electrical Engineering from the University of Delaware, and completed a full stack web development program through Flatiron School, where I taught as an instructor for that program while I finished my MS.
+ In 2017 I resigned my comission to pursue software engineering. Since then, I have completed a M.S. in Computer and Electrical Engineering from the University of Delaware, and completed a full stack web development program through Flatiron School, where I taught as an instructor while I finished my MS.
 
  I completed my Masters degree with a 4.0 and invitation to Phi Kappa Phi. I am interesed in continous learning, and continue to learn new skills and study Computer Science topics, specifically data structures, algorithms, and design patterns.`
 
@@ -159,6 +159,11 @@ const technologies = {
         label: "CSS"
     },
 
+    github: {
+        img: '../../public/assets/images/github.png',
+        label: "Github"
+    },
+
     matlab: {
         img: '../../public/assets/images/matlab.jpeg',
         label: 'Matlab'
@@ -187,6 +192,25 @@ const certifications = {
     }
 }
 
+const otherSkills = {
+    submarine: {
+        img: '../../public/assets/images/sub.png',
+        label: 'Performing in high-responsibility roles'
+    },
+    leadership: {
+        img: '../../public/assets/images/leadership.png',
+        label: 'Leading teams'
+    },
+    nuclear: {
+        img: '../../public/assets/images/power.png',
+        label: 'Understanding complex systems'
+    },
+    learning: {
+        img: '../../public/assets/images/bulb.png',
+        label: "Continuous learning and improvement"
+    }
+
+}
 const resumeLink = "https://docs.google.com/document/d/1FBJBXWZxaofwN12zgTqkvkCanTCjN_ZF5SigoPU3waE/edit?usp=sharing"
 const about = `I am a <span class="emph1">Software Engineer</span> who is passionate about <span class="emph2">solving difficult problems with elegant code</span>, <span class="emph3">being challenged</span>, and most imporantly <span class="emph4">continuous learning.</span>`
 

@@ -8,7 +8,7 @@ class Navbar extends HTMLManager{
         this.add(new SidenavLink('project-diagram', "Projects", {url: "#projects"}))
         this.add(new SidenavLink('pen-fancy', "Blog", {url: "#blog"}))
         this.add(new SidenavLink('envelope', "Contact", {url: "#contact"}))
-        this.add(new SidenavLink('address-card', "Bio", {url: "bio"}))
+        this.add(new SidenavLink('address-card', "Bio", {url: "#bio"}))
         this.add(new SidenavLink('file-alt', "Resume", {callback: () => window.open(resumeLink, "_blank")}))
         this.add(new SidenavLink('dungeon', "Explore", {callback: () => renderCanvasSite()}))
 

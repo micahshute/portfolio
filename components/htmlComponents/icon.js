@@ -1,12 +1,12 @@
 class Icon extends HTMLComponent{
 
-    constructor(icon, opts={}){
-        super({icon, ...opts})
+    constructor(icon, opts={}, type="s"){
+        super({icon, ...opts, type})
     }
 
     createView(){
         const i = document.createElement('i')
-        i.className = `fas fa-{{icon}} {{className}}`
+        i.className = `fa{{type}} fa-{{icon}} {{className}}`
         return i
     }
 }

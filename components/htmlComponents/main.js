@@ -2,7 +2,7 @@ class Main extends HTMLManager{
 
     constructor(){
         super({})
-        this.view.onscroll = () => this.view.scrollLeft = 0
+        // this.view.onscroll = () => this.view.scrollLeft = 0
 
 
         // MARK: QUOTES
@@ -51,7 +51,7 @@ class Main extends HTMLManager{
 
         const udCourseListHeader = document.createElement('h5')
         udCourseListHeader.className = 'course-card-header'
-        udCourseListHeader.textContent = 'Studied Topics:'
+        udCourseListHeader.textContent = 'Studied Topics'
         udCourseListHeader.style.margin = 0
         const udCourseList = document.createElement('ul')
         udCourseList.style.margin = 0
@@ -97,7 +97,7 @@ class Main extends HTMLManager{
 
         const fiCourseListHeader = document.createElement('h5')
         fiCourseListHeader.className = 'course-card-header'
-        fiCourseListHeader.textContent = 'Studied Topics:'
+        fiCourseListHeader.textContent = 'Studied Tools'
         fiCourseListHeader.style.margin = 0
 
         const fiCourseList = document.createElement('ul')
@@ -121,6 +121,50 @@ class Main extends HTMLManager{
 
         flatironCard.add(fiCourseListHeader)
         flatironCard.add(fiCourseList)
+
+        const npsCard = new Card({
+            title: "Nuclear Engineering",
+            subtitle: "Naval Nuclear Power School",
+            subtitleOpts: {
+                style: {
+                    display: 'inline-block',
+                },
+                withImage: {
+                    url: '../../public/assets/images/nps.png',
+                    width: 25,
+                    height: 25,
+                    style: {
+                        marginLeft: '10px'
+                    }
+                }
+            }
+        })
+
+        const npsHdr = document.createElement('h5')
+        npsHdr.className = 'course-card-header'
+        npsHdr.textContent = "Studied to supervise a nuclear power plant"
+        npsHdr.style.margin = 0
+
+        const npsCourseList = document.createElement('ul')
+        npsCourseList.style.margin = 0
+        npsCourseList.className = "course-list"
+        const npsCourses = [
+            this.createLI('Nuclear Engineering'),
+            this.createLI('Electrical Engineering'),
+            this.createLI('Thermodynamics'),
+            this.createLI('Chemistry'),
+            this.createLI('Materials'),
+            this.createLI('Nuclear Reactor Dynamics')  
+        ]
+        
+        for(let course of npsCourses){
+            npsCourseList.appendChild(course)
+        }
+
+        npsCard.add(npsHdr)
+        npsCard.add(npsCourseList)
+
+
 
 
         const usnaCard = new Card({
@@ -149,6 +193,7 @@ class Main extends HTMLManager{
 
         educationSection.sectionContent.add(udCard)
         educationSection.sectionContent.add(flatironCard)
+        educationSection.sectionContent.add(npsCard)
         educationSection.sectionContent.add(usnaCard)
 
 
@@ -183,10 +228,19 @@ class Main extends HTMLManager{
             }
         )
 
+        const otherSkillsCard = new SkillCard(
+            "Other Skills",
+            otherSkills,
+            {
+                className: "bold small-font"
+            }
+        )
+
         skillsSection.add(languagesCard)
         skillsSection.add(frameworksCard)
         skillsSection.add(otherTechnologiesCard)
         skillsSection.add(certificationsCard)
+        skillsSection.add(otherSkillsCard)
 
 
 
@@ -445,7 +499,7 @@ class Main extends HTMLManager{
             id: "mailto-link", 
             text: "micah.shute@gmail.com", 
             url: '#',
-            className: 'dark-text bold-on-hover text-align-bottom',
+            className: 'dark-text bold-on-hover',
             onClick: (e) => {
                 e.preventDefault()
                 window.open('mailto:micah.shute@gmail.com', "_blank")
@@ -461,12 +515,87 @@ class Main extends HTMLManager{
         buttonLinkContainer.add(emailIcon)
         buttonLinkContainer.add(emailLink)
 
+        const linkedinContainerDiv = document.createElement('div')
+        linkedinContainerDiv.style.display = 'flex'
+        linkedinContainerDiv.style.justifyContent = 'flex-start'
+        linkedinContainerDiv.style.alignItems = 'center'
+        linkedinContainerDiv.style.padding = '20px';
+        const linkedinContainer = new ElementWrapper(linkedinContainerDiv)
 
-        contactSection.add(buttonLinkContainer)
+        const linkedinIcon = new IconWithBg('linkedin-in', {iconClassName: 'clickable-icon-color'}, "b")
+        linkedinIcon.view.classList.add('clickable-icon')
+        linkedinIcon.view.onclick = () => window.open('https://linkedin.com/in/micahshute')
+
+        const linkedinLink = new Link({
+            id: 'linkedin-link',
+            text: 'linkedin.com/in/micahshute',
+            url: 'https://linkedin.com/in/micahshute',
+            className: 'dark-text bold-on-hover',
+            target: "_blank"
+        })
+
+        linkedinContainer.add(linkedinIcon)
+        linkedinContainer.add(linkedinLink)
+
+        
+
+        const githubContainerDiv = document.createElement('div')
+        githubContainerDiv.style.display = "flex"
+        githubContainerDiv.style.justifyContent = 'flex-start'
+        githubContainerDiv.style.alignItems = 'center'
+        githubContainerDiv.style.padding = '20px'
+
+        const githubContainer = new ElementWrapper(githubContainerDiv)
+
+        const githubIcon = new IconWithBg('github', {iconClassName: 'clickable-icon-color'}, 'b')
+        githubIcon.view.classList.add('clickable-icon')
+        githubIcon.view.onclick = () => window.open('https://github.com/micahshute')
+
+        const githubLink = new Link({
+            id: 'github-link',
+            text: 'github.com/micahshute',
+            url: 'https://github.com/micahshute',
+            className: 'dark-text bold-on-hover',
+            target: '_blank'
+        })
+
+
+        githubContainer.add(githubIcon)
+        githubContainer.add(githubLink)
+
+
+        contactSection.sectionContent.add(buttonLinkContainer)
+        contactSection.sectionContent.add(linkedinContainer)
+        contactSection.sectionContent.add(githubContainer)
+
         //MARK: BIO
 
         const bioSection = new MainSection("Bio")
 
+        const bioDiv = document.createElement('div')
+        bioDiv.style.display = 'flex'
+        bioDiv.style.justifyContent = 'space-between'
+        bioDiv.style.alignItems = 'center'
+
+        const bioPic = document.createElement('img')
+        bioPic.src = '../../public/assets/images/bw_profile.jpg'
+        bioPic.height = 530
+        bioPic.width = 258
+        bioPic.style.margin = '10px'
+        bioPic.style.borderRadius = '5px'
+        bioPic.style.boxShadow = '1px 1px 3px 3px rgba(0,0,0,0.2)'
+
+
+        const bioP = document.createElement('p')
+        bioP.textContent = bio
+        bioP.style.fontWeight = 600
+        bioP.style.fontSize = '1.1em'
+        
+
+        bioDiv.appendChild(bioPic)
+        bioDiv.appendChild(bioP)
+
+        bioSection.sectionContent.add(bioDiv)
         // const resumeSection = new MainSection(this.view, "Resume")
 
         this.add(topHeader)
@@ -491,6 +620,8 @@ class Main extends HTMLManager{
         li.textContent = txt
         return li
     }
+
+    
 
 
 }

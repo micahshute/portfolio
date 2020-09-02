@@ -18,7 +18,7 @@ class SidenavLink extends HTMLManager{
         const link = new Link({
             text: label, 
             id: `${label.toLowerCase()}-link`,
-            url: "#", 
+            url: url, 
             onClick: (e) => { e.preventDefault() }
         })//, labelGrid.view)
 

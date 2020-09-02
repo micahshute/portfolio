@@ -5,8 +5,8 @@ class TopHeader extends HTMLManager{
         this.quotes = quotes
         const quote = this.randomQuote
         const quoteObj = new Quote(quote.quote, quote.author, {quote: {className: "floating"}, author: {className: "floating"}})
-        this.currentQuote = quoteObj
-        this.add(quoteObj)
+        this.currentQuote = new Fade(quoteObj, 0)
+        this.add(this.currentQuote)
     }
 
 
@@ -18,14 +18,18 @@ class TopHeader extends HTMLManager{
 
     async changeQuote(){
         const newQuote = this.randomQuote
-        await this.removeQuote()
-        this.addQuote(newQuote)
+        this.currentQuote.beginFadeout(async (el) => {
+            await this.removeQuote()
+            this.addQuote(newQuote)
+        })
     }
 
+
     addQuote(newQuote){
-        const quote = new Quote(newQuote.quote, newQuote.author, {quote: {className: "floating"}, author: {className: "floating"}})
+        const quote = new Fade(new Quote(newQuote.quote, newQuote.author, {quote: {className: "floating"}, author: {className: "floating"}}), 0)
         this.currentQuote = quote
         this.add_and_render(quote)
+        quote.beginFadein()
     }
 
     async removeQuote(){
@@ -41,6 +45,7 @@ class TopHeader extends HTMLManager{
     }
 
     declareBindingsAndEventListeners(){
+        this.currentQuote.beginFadein()
         const interval = window.setInterval(() => {
             this.changeQuote()
         }, 100000)
