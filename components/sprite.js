@@ -116,7 +116,7 @@ class Sprite extends Graphic{
     }
 
     constructor(sprite, user= null, location= {x: 100, y: 100 }, canvas ,size= {x: 64, y: 64}){
-        super(canvas, location, MovingLocationCalculationStrategy)
+        super(canvas, location, 100, MovingLocationCalculationStrategy)
         this.img = document.createElement('img')
         this.img.src = sprite
         this.user = user

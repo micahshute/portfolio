@@ -207,6 +207,11 @@ class Main extends HTMLManager{
             "Languages", 
             languages
         )
+
+        const frameworksList = frameworks
+        if(window.mobileCheck()){
+            delete frameworksList['reactNative']
+        }
         const frameworksCard = new SkillCard(
             "Libraries / Frameworks", 
             frameworks,
@@ -573,9 +578,9 @@ class Main extends HTMLManager{
         const bioSection = new MainSection("Bio")
 
         const bioDiv = document.createElement('div')
-        bioDiv.style.display = 'flex'
-        bioDiv.style.justifyContent = 'space-between'
-        bioDiv.style.alignItems = 'center'
+        // bioDiv.style.display = 'flex'
+        // bioDiv.style.justifyContent = 'space-between'
+        // bioDiv.style.alignItems = 'center'
 
         const bioPic = document.createElement('img')
         bioPic.src = '../../public/assets/images/bw_profile.jpg'
@@ -584,6 +589,8 @@ class Main extends HTMLManager{
         bioPic.style.margin = '10px'
         bioPic.style.borderRadius = '5px'
         bioPic.style.boxShadow = '1px 1px 3px 3px rgba(0,0,0,0.2)'
+        //TEST
+        bioPic.style.float = "left"
 
 
         const bioP = document.createElement('p')

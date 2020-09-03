@@ -10,13 +10,19 @@ class CanvasApp extends Picture{
         this.displayTitle()
         
         const initSequence = this.getInitSequence()
+
         this.add(new WithDelay(initSequence,1))
+        
+
+        const spriteSize = Math.min(this.canvas.width * 0.07, 50)
+
+
         this.sprite = new MoveableSprite(
             'public/assets/sprites/Male/Male\ 01-2.png', 
             null, 
-            {x: "15%", y: 100}, 
+            {x: "15%", y: 150}, 
             this.canvas, 
-            {x: this.canvas.width * 0.07, y: this.canvas.width * 0.07}
+            {x: spriteSize, y: spriteSize}
         )
         Transporter.sprite = this.sprite
         window.onresize = this.canvasSetup.bind(this)
@@ -32,6 +38,7 @@ class CanvasApp extends Picture{
     setEnvironment(initial = true, sprite= false){
         this.displayTitle()
         this.addDoors(initial)
+        this.displayEnvironment(initial)
         if(sprite){ this.addSprite() }
     }
 
@@ -52,6 +59,15 @@ class CanvasApp extends Picture{
             }
         ))
 
+    }
+
+    displayEnvironment(withDelay = true){
+        if(withDelay){
+            this.add(new WithDelay(new WithTransition(new MainLandscape()), 2))
+        }else{
+            this.add(new MainLandscape())
+        }
+        
     }
 
     addDoors(withDelay = true){
@@ -82,27 +98,20 @@ class CanvasApp extends Picture{
                     Transporter.transportSprite(10,10,"right", "center")
                     this.add(this.sprite)
                 }),
-            // new Collidable(new Door(this.canvas, {x: "9%", y: "70%"}, doorWidth, doorHeight, {label: "Site Portal"}),
-            //     () => {
-            //         window.cancelAnimationFrame(this.animationId)
-            //         this.children = []
-            //         this.sprite = null
-            //         this.container.innerHTML = ''
-            //         renderHTMLSite()
-            //     })
+
             new CanvasLink({x: "9%", y: "70%"}, "Site Portal", "", () => Transporter.sprite, {
                 callback: () => {
-                    window.cancelAnimationFrame(this.animationId)
-                    this.children = []
-                    this.sprite = null
-                    this.container.innerHTML = ''
-                    renderHTMLSite()
+                        window.cancelAnimationFrame(this.animationId)
+                        this.children = []
+                        this.sprite = null
+                        this.container.innerHTML = ''
+                        renderHTMLSite()
                     }
                 })
         ]
 
         if(withDelay){
-            const delayedDoors = doors.map(d => new WithDelay(new WithTransition(d), 3))
+            const delayedDoors = doors.map(d => new WithDelay(new WithTransition(d), 2))
             for(let dd of delayedDoors){
                 this.add(dd)
             }
@@ -119,7 +128,7 @@ class CanvasApp extends Picture{
             new CanvasTextManager(
                 t,
                 this.canvas,
-                {x: "15%", y: 200},
+                {x: "15%", y: 90},
                 {
                     shouldScroll: true,
                     scrollRate: 30,
@@ -156,6 +165,8 @@ class CanvasApp extends Picture{
         const collisionCandidates = [...this.children]
         while(collisionCandidates.length > 0){
             const child = collisionCandidates.pop()
+            
+            // if(child.children) console.log(child.children.map(c => c.constructor.name))
             if(child.constructor.name === "Collidable"){
                 const childXMin = child.xMin
                 const childXMax = child.xMax
@@ -188,7 +199,6 @@ class CanvasApp extends Picture{
         this.lastTime = now
         this.animationId = requestAnimationFrame(this.gameLoop.bind(this))
     }
-
 
     
 

@@ -1,7 +1,8 @@
 class Graphic extends Component{
 
-    constructor(canvas, location, locationStrategy = LocationCalculationStrategy){
+    constructor(canvas, location,priority = 1, locationStrategy = LocationCalculationStrategy){
         super()
+        this.priority = priority
         this.canvas = canvas
         this.locationStrategy = new locationStrategy(location, canvas)
     }

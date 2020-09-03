@@ -1,7 +1,8 @@
 class Picture extends ComplexComponent{
 
-    constructor(canvas, location, locationStrategy = LocationCalculationStrategy){
+    constructor(canvas, location, priority = 1,locationStrategy = LocationCalculationStrategy){
         super()
+        this.priority = priority
         this.canvas = canvas
         this.locationStrategy = new locationStrategy(location, canvas)
     }
@@ -50,6 +51,10 @@ class Picture extends ComplexComponent{
 
     get collidables(){
         return this.children.map(c => c.collidables).flat(Number.POSITIVE_INFINITY)
+    }
+    add(component){
+        super.add(component)
+        this.children = this.children.sort((a,b) => a.priority - b.priority)
     }
 
 }

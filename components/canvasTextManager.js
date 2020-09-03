@@ -14,7 +14,9 @@ class CanvasTextManager extends Picture{
         fontColor = "white",
         fontWeight = "900",
         textAlign = "center",
-        calculateImmediately = false
+        calculateImmediately = false,
+        withBackground = false,
+        backgroundColor = null
         }){
         super(canvas, location)
         this.canvas = canvas
@@ -40,7 +42,13 @@ class CanvasTextManager extends Picture{
         if(calculateImmediately){
             this.calculateRowsAndAddChildren()
         }
-        
+
+        this.withBackground = withBackground
+        this.backgroundColor = backgroundColor
+        this.minX = this.location.x - 10
+        this.maxX = this.canvas.width * (1 - Number.parseInt(this.endingX.substring(0, this.endingX.length - 1)) / 100) + 10
+        this.minY = this.location.y - this.chrSize / 2 - 10
+        this.maxY = this.location.y + 10
     }
  
 
@@ -125,6 +133,11 @@ class CanvasTextManager extends Picture{
         if(this.shouldDisappear){
             txtComponents = txtComponents.map((tc, i) => new DisappearingTextDecorator(tc, this.secondsToDisappear, i == tc.length - 1 ? this.disappearedCompleteHook : () => null))
         } 
+
+        if(this.withBackground){
+            this.maxY = this.minY + rows.length * this.chrSize + 20
+            this.add(new Rectangle(this.canvas, {x: this.minX, y: this.minY}, this.maxY - this.minY, this.maxX - this.minX, this.backgroundColor))
+        }
 
         if(this.shouldScroll){
             txtComponents = txtComponents.map((tc, i) => new ScrollingTextDecorator(

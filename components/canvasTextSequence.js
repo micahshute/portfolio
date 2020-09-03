@@ -1,8 +1,11 @@
 class CanvasTextSequence extends Picture{
 
     constructor(txtManagers, {timeBetween = 1, timeToDisplay = 5, timeAfterScroll = 2, completeHook = () => null}){
-        super(txtManagers[0].canvas, txtManagers[0].location)
+        super(txtManagers[0].canvas, txtManagers[0].location, 99)
         this.txtManagers = txtManagers
+        for(let tm of this.txtManagers){
+            tm.priority = 99
+        }
         this.areScrolling = txtManagers[0].shouldScroll
         this.timeBetween = timeBetween
         this.timeToDisplay = timeToDisplay

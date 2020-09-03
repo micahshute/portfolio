@@ -7,7 +7,9 @@ class Door extends Picture{
     }
 
     static doorWidth(){ return 0.15 * document.querySelector('canvas').height }
-
+    static doorWidthPx(){ 
+        return this.doorWidth()
+    }
 
     constructor(canvas, location, width, height, {label= "", doorColor="#6e2c00", knobColor="gold", labelColor="black", labelSize=null, font="Cinzel"}){
         super(canvas, location)

@@ -2,6 +2,7 @@ class Collidable{
 
     constructor(component, collideHook){
         this.component = component
+        this.priority = component.priority
         this.collideHook = collideHook
     }
 

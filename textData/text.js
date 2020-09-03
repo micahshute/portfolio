@@ -1,7 +1,10 @@
 const introSequenceTxt = [
-    "Thanks for visiting my Portfolio Site",
+    "Thanks for visiting my Interactive Portfolio Site",
+    "This portion of the site is in Beta, proceed at your own risk",
+    "You can always turn back by going through the portal to the south",
     "This site was built with vanilla JS with no external libraries.\n It is containerized with Docker and is served by nginx.",
     "I am using a composite design pattern to display the elements on the screen and to change landscapes when the sprite enters different doors", 
+    "A composite design pattern is also used to create the structure of the main site which you just came from",
     "A decorator design pattern is used to give the screen's text different attributes and to make any element collidable with the sprite.",
     "Relative => pixel calculations and sprite animation is managed with a Strategy design pattern",
     "Control your sprite using W,S,A,D or the arrow keys, and have fun exploring! Thanks for visiting \u{1F531}"

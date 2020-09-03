@@ -1,7 +1,7 @@
 class WithTransition extends Graphic{
 
     constructor(component, transitionSeconds = 2){
-        super(component.canvas, component.location)
+        super(component.canvas, component.location, 0)
         this.component = component
         this.transitionSeconds = transitionSeconds
         this.displayTime = 0

@@ -15,7 +15,7 @@ class MoveableSprite extends Sprite{
         this.boundKeyUpEL = this.keyUpEL.bind(this)
         this.boundKeyDownEL = this.keyDownEL.bind(this)
         
-        this.makeControllble()
+        this.makeControllable()
     }
 
     makeUncollidable(){
@@ -27,7 +27,7 @@ class MoveableSprite extends Sprite{
     }
 
 
-    makeControllble(){
+    makeControllable(){
         document.addEventListener('keydown', this.boundKeyDownEL)
         document.addEventListener('keyup', this.boundKeyUpEL)
     }
@@ -47,7 +47,7 @@ class MoveableSprite extends Sprite{
                 callback()
                 window.setTimeout(() => {
                     this.makeCollidable()
-                    this.makeControllble() 
+                    this.makeControllable() 
                     this.activeState = Sprite.Image.states.STANDING_DOWN    
                     this.location = location 
                 }, 100)

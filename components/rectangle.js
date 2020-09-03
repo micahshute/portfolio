@@ -1,7 +1,7 @@
 class Rectangle extends Graphic{
 
-    constructor(canvas, location, height, width, color, fill=true){
-        super(canvas, location)
+    constructor(canvas, location, height, width, color, fill=true, priority = 1){
+        super(canvas, location, priority)
         this.height = height
         this.width = width
         this.color = color
