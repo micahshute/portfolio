@@ -2,10 +2,20 @@ let APP
 
 let Transporter = isSafari() ? SafariTransporter : SpriteTransporter
  
+window.onunload = MetricAdapter.disconnect.bind(MetricAdapter)
+
+window.addEventListener('blur', (e) => {
+   MetricAdapter.disconnect()
+})
+
+window.addEventListener('focus', (e) => {
+   MetricAdapter.connect()
+})
+
  document.addEventListener("DOMContentLoaded", () => {
     const root = document.querySelector('#root')
-    // const canvasApp = new CanvasApp(root)
     renderHTMLSite()
+    MetricAdapter.connect()
  })
 
 
@@ -17,16 +27,8 @@ let Transporter = isSafari() ? SafariTransporter : SpriteTransporter
  }
 
  function renderCanvasSite(){
-   //  for(let i of INTERVALS){
-   //     window.clearInterval(i)
-   //  }
-   //  for(let t of TIMEOUTS){
-   //     window.clearTimeout(t)
-   //  }
-   //  const root = document.querySelector("#root")
-   //  root.innerHTML = ''
    APP.derender()
-    new CanvasApp(root)
+   new CanvasApp(root)
  }
 
 //TODO: Add to Door class as default class vars
