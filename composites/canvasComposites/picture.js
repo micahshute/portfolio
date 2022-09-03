@@ -50,11 +50,19 @@ class Picture extends ComplexComponent{
     }
 
     get collidables(){
-        return this.children.map(c => c.collidables).flat(Number.POSITIVE_INFINITY)
+        if(this.displayedChildren){
+            return this.displayedChildren.map(c => c.collidables).flat(Number.POSITIVE_INFINITY)
+        }else{
+            return this.children.map(c => c.collidables).flat(Number.POSITIVE_INFINITY)
+        }
     }
     add(component){
         super.add(component)
         this.children = this.children.sort((a,b) => a.priority - b.priority)
+    }
+
+    prioritize(){
+        this.children.sort((a,b) => a.priority - b.priority)
     }
 
 }

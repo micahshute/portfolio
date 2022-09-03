@@ -29,6 +29,26 @@ class LocationCalculationStrategy{
         return this.canvas.height * this.location.y
     }
 
+    set x(newX){
+        if(typeof newX === 'string' && newX[newX.length - 1] === "%"){
+            this.xCoordinateDynamic = true
+            this.location.x = parseInt(newX.substing(0, newX.length - 1)) / 100
+        }else{
+            this.xCoordinateDynamic = false
+            this.location.x = newX
+        }
+    }
+
+    set y(newY){
+        if(typeof newY === 'string' && newY[newY.length - 1] === "%"){
+            this.yCoordinateDynamic = true
+            this.location.y = parseInt(newY.substring(0, newY.length - 1)) / 100
+        }else{
+            this.yCoordinateDynamic = false
+            this.location.y = newY
+        }
+    }
+
 
     get x(){
         return this.xCoordinateDynamic ? this.dynamicX : this.location.x

@@ -13,10 +13,22 @@ class Ground extends Graphic{
         this.height = height
         this.width = width
         this.img = img
-        this.xMin = this.location.x
-        this.yMin = this.location.y
-        this.xMax = this.xMin + width
-        this.yMax = this.yMin + height
+    }
+
+    get xMin(){
+        return this.location.x
+    }
+
+    get xMax(){
+        return this.xMin + this.width
+    }
+
+    get yMin(){
+        return this.location.y
+    }
+
+    get yMax(){
+        return this.yMin + this.height
     }
 
     render(dt){

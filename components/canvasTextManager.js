@@ -39,12 +39,12 @@ class CanvasTextManager extends Picture{
         this.elapsedTime = 0
         this.childrenQueue = []
         this.rowsCalculated = false
+        this.withBackground = withBackground
+        this.backgroundColor = backgroundColor
         if(calculateImmediately){
             this.calculateRowsAndAddChildren()
         }
 
-        this.withBackground = withBackground
-        this.backgroundColor = backgroundColor
         this.minX = this.location.x - 10
         this.maxX = this.canvas.width * (1 - Number.parseInt(this.endingX.substring(0, this.endingX.length - 1)) / 100) + 10
         this.minY = this.location.y - this.chrSize / 2 - 10

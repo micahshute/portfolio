@@ -2,8 +2,27 @@ class Collidable{
 
     constructor(component, collideHook){
         this.component = component
-        this.priority = component.priority
         this.collideHook = collideHook
+    }
+
+    get priority(){
+        return this.component.priority
+    }
+
+    get height(){
+        return this.component.height
+    }
+
+    set height(newHeight){
+        this.component.height = height
+    }
+
+    get width(){
+        return this.component.width
+    }
+
+    set width(newWidth){
+        this.component.width = width
     }
 
     get canvas(){
@@ -20,6 +39,10 @@ class Collidable{
 
     get location(){
         return {x: this.x, y: this.y}
+    }
+
+    set location(newLocation){
+        this.component.location = newLocation
     }
 
     get xMin(){

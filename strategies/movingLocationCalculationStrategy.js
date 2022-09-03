@@ -1,6 +1,7 @@
 class MovingLocationCalculationStrategy{
 
     constructor(location, canvas, initStrat = LocationCalculationStrategy){
+        this.inputLocation = location
         const initLocaitonCalc = new initStrat(location, canvas)
         this.location = {x: initLocaitonCalc.x, y: initLocaitonCalc.y}
         this.canvas = canvas

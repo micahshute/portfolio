@@ -2,6 +2,7 @@ class CanvasApp extends Picture{
 
 
     constructor(container){
+        PubSub.createTopic("canvasResize")
         const canvas = document.createElement('canvas')
         container.appendChild(canvas)
         super(canvas, {x: 0, y: 0})
@@ -152,6 +153,12 @@ class CanvasApp extends Picture{
     canvasSetup(){
         this.canvas.width = this.container.clientWidth
         this.canvas.height = this.container.clientHeight
+        PubSub.publishToTopic("canvasResize",
+            {
+                height: this.container.clientHeight,
+                width: this.container.clientWidth
+            }
+        )
     }
 
     checkCollision(){
@@ -199,8 +206,5 @@ class CanvasApp extends Picture{
         this.lastTime = now
         this.animationId = requestAnimationFrame(this.gameLoop.bind(this))
     }
-
-    
-
 
 }

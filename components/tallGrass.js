@@ -1,7 +1,7 @@
-class Grass extends Ground{
+class TallGrass extends Ground{
     constructor(location, height, width){
         const img = document.createElement('img')
-        img.src = "../../public/assets/graphics/grass1small.png"
+        img.src = "../../public/assets/graphics/XY_Grass.png"
         super(location, height, width, img)
     }
 }

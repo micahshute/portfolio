@@ -5,8 +5,8 @@ class MainLandscape extends Picture{
         spriteSize = spriteSize || Math.min(this.canvas.width * 0.07, 50)
 
         this.lastSpriteLocation = {x: 0, y: 0}
-        this.probGen = ProbabilityGenerator.binaryChoice(0.001)
-        this.probGenMessage = ProbabilityGenerator.binaryChoice(0.01)
+        this.probGen = ProbabilityGenerator.binaryChoice(0.1)
+        this.probGenMessage = ProbabilityGenerator.binaryChoice(0.1)
         this.warned = false
 
         const roadWidth = spriteSize * 1.5
@@ -69,37 +69,101 @@ class MainLandscape extends Picture{
                 let sendWarning = this.probGen.next().value
                 // console.log(encounter)
                 // console.log(sendWarning)
-                if(encounter && this.warned){
-                    this.warned = false
-                    sendWarning = true
-                }else if(encounter && !this.warned){
+                if(encounter && !this.warned){
                     sendWarning = true
                 }
                 if(sendWarning && !this.warned){
-                    const message = new WithLifetime(new CanvasTextManager(
+                    const message = new WithLifetime(new InformationBanner(
                         "You should be careful walking on the grass...",
-                        this.canvas,
                         {x: "30%", y: Transporter.sprite.location.y - Transporter.sprite.size.y},
-                        {
-                            shouldScroll: true,
-                            scrollRate: 30,
-                            font: 'Raj',
-                            fontSize: "20px",
-                            fontColor: "black",
-                            endingX: "30%",
-                            textAlign: "start",
-                            fontWeight: 300,
-                            withBackground: true,
-                            backgroundColor: 'white',
-                        }), 5, true)
+                    ), 5, true)
                     message.priority = 99
                     this.add(message)
                     this.warned = true
+                }else if(encounter && this.warned){
+                    const distractingText = this.parent.children.find(c => c.constructor.name === "CanvasTextSequence")
+                    if(distractingText){
+                        this.parent.remove(distractingText)
+                    }
+                    this.add(new WithLifetime(
+                        new ShockedIcon(Transporter.sprite),
+                        2, 
+                        true,
+                        () => {
+                            Transporter.sprite.makeUncontrollable()
+                            Transporter.sprite.activeState = Sprite.Image.states.STANDING_DOWN
+                            this.add(new Image(
+                                "../../public/assets/graphics/abra.png",
+                                this.canvas,
+                                { x: Transporter.sprite.location.x - Transporter.sprite.size.x / 2 , y: Transporter.sprite.location.y + 30 },
+                                { x: 100, y: 100 } 
+                            ))
+                            window.setTimeout(() => {
+                                this.add(
+                                    new WithLifetime(
+                                        new InformationBanner(
+                                            "A strange creature hops out of the tall grass!! It looks at you inquisitively....",
+                                            {x: "25%" ,y: "5%"}
+                                        ),
+                                        5,
+                                        true,
+                                        () => {
+                                            this.add(new ReactableBanner({
+                                                message: "What do you want to do? ...",
+                                                options: [
+                                                    "Kick it",
+                                                    "Curl up in a ball",
+                                                    "Keep your distance and watch what it does",
+                                                    "Approach it slowly but with authority"
+                                                ],
+                                                onSelect: (selection) => addAfterInitialDecisionEvent(selection)
+                                            }))
+                                        }
+                                    )
+                                )
+                            }, 1000)
+                        })
+                    )
                 }
                 this.lastSpriteLocation = {...Transporter.sprite.location}
             }
         })
 
+        const addAfterInitialDecisionEvent = (selection) => {
+            this.add(new WithLifetime(
+                new InformationBanner(
+                    "Before you can do anything, you hear a deafening roar, and you see a shadow spread across the ground around you. The creature you encountered looks in the sky above you, terrified...",
+                    { x: "25%", y: "5%" }
+                ),
+                15,
+                true, 
+                () => {
+                    this.add(new WithLifetime(
+                        new InformationBanner(
+                            "In the split second you are frozen in surprise, the terrestrial fauna looks at you with what seems like a sense of urgency and charity. It quickly grabs your wrist... you instantly feel like you've been shot out of a cannon as the world spins around you and you begin to black out...",
+                            { x: "25%", y: "5%" }
+                        ),
+                        15,
+                        true,
+                        () => {
+                            Transporter.sprite.transportWithAnimation(
+                                {x: -50, y: -50},
+                                2500,
+                                () => {
+                                    window.setTimeout(() => {
+                                        Game.start(this.parent); alert(`GAME START WITH DECISION ${selection}`)
+                                    }, 150)
+                                }
+                            )
+                        }
+                    ))
+                })   
+            )
+        }
+
+        const getAttackEvent = () => {
+            
+        }
 
         this.add(westRoad)
         this.add(northRoad)

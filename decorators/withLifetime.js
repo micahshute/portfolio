@@ -1,12 +1,13 @@
 class WithLifetime extends Picture{
 
-    constructor(component, lifetimeSeconds, stopTime = false){
+    constructor(component, lifetimeSeconds, stopTime = false, endHook=() => {}){
         super(document.querySelector('canvas'), component.location)
         this.add(component)
         this.stopTime = stopTime
         this.timeStopped = false
         this.lifetimeLimit = lifetimeSeconds
         this.lifetime = 0
+        this.endHook = endHook
     }
 
 
@@ -21,6 +22,7 @@ class WithLifetime extends Picture{
             if(this.stopTime){
                 Transporter.sprite.makeControllable()
             }
+            this.endHook()
             this.parent.remove(this)
         }
     }
